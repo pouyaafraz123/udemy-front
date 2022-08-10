@@ -25,7 +25,7 @@ const MainHeader = () => {
 
 const Content = styled.div`
   background: rgba(249, 250, 251);
-
+  padding-top: 110px;
 `;
 const Row = styled.div`
 `;

@@ -10,7 +10,8 @@ const TopBar = (props) => {
             <NavBar className="navbar navbar-expand-xl bg-light navbar-light">
                 <div className="container">
                     <a className="navbar-brand pl-lg-5" href="#">یادینا</a>
-                    <div className="d-xl-none d-lg-block" style={{cursor: 'pointer'}} onClick={props.clicked}>
+                    <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}
+                         onClick={props.clicked}>
                         {props.open ? <CloseIcon style={{color: '#29509d'}} fontSize={"large"}/> :
                             <MenuIcon style={{color: '#29509d'}} fontSize={"large"}/>}
                     </div>
@@ -31,6 +32,13 @@ const TopBar = (props) => {
 
 const NavBar = styled.nav`
   background-color: #f9fafb !important;
+  border-bottom: 4px solid white;
+  
+  .toggler-box {
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px 2px;
+  }
 
   .navbar-brand {
     font-weight: 900;
@@ -60,7 +68,6 @@ const NavBar = styled.nav`
     background-color: #7ac3f0;
     z-index: unset !important;
   }
-
 `;
 
 export default TopBar;
