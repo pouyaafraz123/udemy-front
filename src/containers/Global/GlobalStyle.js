@@ -8,6 +8,10 @@ const Global = createGlobalStyle`
   body {
     font-family: iranyekan, sans-serif;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 `;
 
 export default GlobalStyle;
