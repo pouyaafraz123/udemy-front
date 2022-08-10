@@ -3,7 +3,7 @@ import styled from "styled-components";
 const HomePage = () => {
     return (
         <Container>
-            Home
+
         </Container>
     );
 }
