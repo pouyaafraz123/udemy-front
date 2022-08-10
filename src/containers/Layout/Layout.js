@@ -1,11 +1,5 @@
-import React from "react";
-
 const Layout = (props) => {
-    return(
-        <>
-
-        </>
-    );
+    return(props.children);
 }
 
 export default Layout;

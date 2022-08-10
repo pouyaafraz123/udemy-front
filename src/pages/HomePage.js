@@ -1,10 +1,16 @@
 import styled from "styled-components";
+import Layout from "../containers/Layout/Layout";
+import Header from "../components/HomePage/Header/Header";
 
 const HomePage = () => {
     return (
-        <Container>
-            Home Page 3432
-        </Container>
+        <>
+            <Container>
+                <Layout>
+                    <Header />
+                </Layout>
+            </Container>
+        </>
     );
 }
 
