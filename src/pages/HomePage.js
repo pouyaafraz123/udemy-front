@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import Header from "../components/HomePage/Header";
+import FeatureSection from "../components/HomePage/FeatureSection";
 
 const HomePage = () => {
     return (
         <Container>
-            Home Page 3432
+            <Header/>
+            <FeatureSection/>
         </Container>
     );
 }
