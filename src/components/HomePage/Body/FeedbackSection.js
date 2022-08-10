@@ -1,5 +1,5 @@
-import Title from "../Title";
-import Text from "../Text";
+import Title from "../../Title";
+import Text from "../../Text";
 import styled from "styled-components";
 import AliceCarousel from "react-alice-carousel";
 
@@ -14,7 +14,6 @@ const FeedbackSection = () => {
                 <Text>مارا در شبکه های اجتماعی دنبال کنید!</Text>
             </Top>
             <SliderContainer>
-                <AliceCarousel items={null}/>
             </SliderContainer>
         </Content>
     );

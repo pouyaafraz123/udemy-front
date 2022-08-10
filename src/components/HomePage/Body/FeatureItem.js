@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import Text from "../Text";
+import Text from "../../Text";
 
 const FeatureItem = (props) => {
     return (

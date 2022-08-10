@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Layout from "../containers/Layout/Layout";
 import Header from "../components/HomePage/Header/Header";
-import FeatureSection from "../components/HomePage/FeatureSection";
-import FeedbackSection from "../components/HomePage/FeedbackSection";
+import Body from "../components/HomePage/Body/Body";
 
 const HomePage = () => {
     return (
@@ -10,8 +9,7 @@ const HomePage = () => {
             <Container>
                 <Layout>
                     <Header/>
-                    <FeatureSection/>
-                    <FeedbackSection/>
+                    <Body/>
                 </Layout>
             </Container>
         </>

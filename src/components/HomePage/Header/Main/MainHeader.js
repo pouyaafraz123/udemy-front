@@ -1,7 +1,7 @@
-import img from "../../img/intro-illustration.svg";
+import img from "../../../../img/intro-illustration.svg";
 import styled from "styled-components";
-import Title from "../Title";
-import Text from "../Text";
+import Title from "../../../Title";
+import Text from "../../../Text";
 
 const MainHeader = () => {
     return (
