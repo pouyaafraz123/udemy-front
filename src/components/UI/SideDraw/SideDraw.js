@@ -11,7 +11,7 @@ const SideDraw = (props) => {
         <>
             <SideDrawDiv>
                 <div className={attachedClasses.join(" ")}>
-                    <MobileMenu/>
+                    <MobileMenu clicked={props.clicked}/>
                 </div>
             </SideDrawDiv>
         </>

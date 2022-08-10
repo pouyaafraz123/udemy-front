@@ -17,7 +17,7 @@ class Header extends Component {
         return (
             <Layout>
                 <TopBar open={this.state.open} clicked={() => this.sideDrawHandler()}/>
-                <SideDraw open={this.state.open}/>
+                <SideDraw open={this.state.open} clicked={() => this.sideDrawHandler()}/>
                 <MainHeader/>
             </Layout>
         );

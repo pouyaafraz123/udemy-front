@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 const TopBar = (props) => {
     return (
         <>
-            <NavBar className="navbar navbar-expand-xl bg-light navbar-light">
+            <NavBar className="navbar navbar-expand-xl bg-light navbar-light" id="Home">
                 <div className="container">
                     <a className="navbar-brand pl-lg-5" href="#">یادینا</a>
                     <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}

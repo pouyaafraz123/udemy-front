@@ -5,10 +5,10 @@ import MenuItems from "../MenuItems/MenuItems";
 const MobileMenu = (props) => {
     return (
         <MobileItems>
-            <MenuItems/>
+            <MenuItems clicked={props.clicked}/>
             <div className="d-flex flex-column pt-3">
-                <a className="nav-link" href="#">ثبت نام</a>
-                <a className="nav-link pt-0 mt-0" href="#">ورود</a>
+                <a className="nav-link" onClick={props.clicked} href="#">ثبت نام</a>
+                <a className="nav-link pt-0 mt-0" onClick={props.clicked} href="#">ورود</a>
             </div>
         </MobileItems>
     );

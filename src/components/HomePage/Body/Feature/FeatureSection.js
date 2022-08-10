@@ -28,7 +28,7 @@ const features = [
 const FeatureSection = () => {
     const [selected, setSelected] = useState(0);
     return (
-        <Content className={"container my-5 pb-5"}>
+        <Content className={"container my-5 pb-5"} id="Features">
             <div className={"d-flex align-items-center justify-content-center"}>
                 <Top>
                     <Title>ویژگی های یادینا</Title>
