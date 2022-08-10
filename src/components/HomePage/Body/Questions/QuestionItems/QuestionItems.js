@@ -1,6 +1,7 @@
 import React from "react";
 import SegmentIcon from '@mui/icons-material/Segment';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import styled from "styled-components";
 
 const questionItems = [
     {
@@ -26,14 +27,16 @@ const questionItems = [
 const QuestionItems = (props) => {
     return questionItems.map((question) => {
         return (
-            <div className="card border-0 w-100" key={question.id}>
+            <div className="card mb-3 border-0 w-100" key={question.id}>
                 <div className="card-header border-0 bg-white">
                     <a className="collapsed card-link" data-toggle="collapse" href={"#" + question.id}>
                         <div className="d-flex justify-content-between align-items-center">
-                            <div>
-                                <SegmentIcon className="ml-2"/> {question.title}
-                            </div>
-                            <KeyboardArrowDownIcon/>
+                            <dic>
+                                <Icon><SegmentIcon className="ml-2"/></Icon> {question.title}
+                            </dic>
+                            <SmallIcon>
+                                <KeyboardArrowDownIcon/>
+                            </SmallIcon>
                         </div>
                     </a>
                 </div>
@@ -46,5 +49,12 @@ const QuestionItems = (props) => {
         );
     })
 }
+
+const Icon = styled.span`
+    color: rgba(41,80,157);
+`;
+const SmallIcon = styled.div`
+    color:rgba(41,80,157,.8);
+`;
 
 export default QuestionItems;

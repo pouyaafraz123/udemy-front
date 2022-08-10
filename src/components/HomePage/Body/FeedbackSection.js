@@ -12,7 +12,7 @@ import user4 from "../../../img/user4.jpeg";
 import user5 from "../../../img/user5.jpeg";
 import user6 from "../../../img/user6.jpeg";
 import user7 from "../../../img/user7.jpeg";
-import FeedbackItem from "./FeedbackItem";
+import FeedbackItem from "./Feature/FeedbackItem";
 
 const items = [
     {
@@ -69,7 +69,7 @@ const responsive = {
 
 const FeedbackSection = () => {
     return (
-        <Content className={"my-5 py-5"}>
+        <Content className={"my-5"}>
             <Top className={"mb-3"}>
                 <Title>نظرات کاربران</Title>
                 <Text>مارا در شبکه های اجتماعی دنبال کنید!</Text>
@@ -100,7 +100,10 @@ const renderItems = (items) => {
     });
 }
 
-const Content = styled.div``;
+const Content = styled.div`
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+`;
 const Top = styled.div`
     display: flex;
   justify-content: center;
