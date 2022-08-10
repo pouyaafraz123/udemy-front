@@ -1,0 +1,39 @@
+@font-face {
+    font-family: IMPORTEDIRANYEKANBLACK;
+    src: url(IRANYEKAN/iranyekanwebblackfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANEXTRABLACK;
+    src: url(IRANYEKAN/iranyekanwebextrablackfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANBOLD;
+    src: url(IRANYEKAN/iranyekanwebboldfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANEXTRABOLD;
+    src: url(IRANYEKAN/iranyekanwebextraboldfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANLIGHT;
+    src: url(IRANYEKAN/iranyekanweblightfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANMEDIUM;
+    src: url(IRANYEKAN/iranyekanwebmediumfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANREGULAR;
+    src: url(IRANYEKAN/iranyekanwebregularfanum.ttf);
+}
+
+@font-face {
+    font-family: IMPORTEDIRANYEKANTHIN;
+    src: url(IRANYEKAN/iranyekanwebthinfanum.ttf);;
+}
