@@ -1,9 +1,9 @@
-import Title from "../../Title";
-import Text from "../../Text";
+import Title from "../../../Title";
+import Text from "../../../Text";
 import styled from "styled-components";
-import feature1 from "../../../img/feature1.svg";
-import feature2 from "../../../img/feature2.svg";
-import feature3 from "../../../img/feature3.svg";
+import feature1 from "../../../../img/feature1.svg";
+import feature2 from "../../../../img/feature2.svg";
+import feature3 from "../../../../img/feature3.svg";
 import FeatureItem from "./FeatureItem";
 import {useState} from "react";
 
@@ -29,7 +29,7 @@ const FeatureSection = () => {
     const [selected, setSelected] = useState(0);
     return (
         <Content className={"container my-5 pb-5"}>
-            <div className={"row d-flex align-items-center justify-content-center"}>
+            <div className={"d-flex align-items-center justify-content-center"}>
                 <Top>
                     <Title>ویژگی های یادینا</Title>
                     <Text>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
