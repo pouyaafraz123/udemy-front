@@ -1,14 +1,18 @@
-import React from "react";
-import GlobalStyle from "../containers/Global/GlobalStyle";
-import styled from "styled-components";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
 import Form from "../components/UserPages/Form/Form";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import styled from "styled-components";
 
 const Login = (props) => {
+    const [passwordShown, setPasswordShown] = useState(false);
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    };
     return (
         <Form
             title={"ورود به سیستم"}
-            linkText={"کلیک"}
+            linkText={"ورود به سیستم"}
             text={"هنوز عضو نشده اید "}
             linkText2={"ثبت نام"}
             text2={" کنید"}
@@ -25,54 +29,46 @@ const Login = (props) => {
             </div>
             <div>
                 <label htmlFor={"pass"}>رمز عبور</label>
-                <input
-                    type={"password"}
-                    className="form-control mb-3"
-                    id={"pass"}
-                    placeholder={"رمز عبور خود را وارد نمایید"}
-                />
+                <PasswordDiv className="input-group">
+                    <input
+                        type={passwordShown ? "text" : "password"}
+                        className="form-control mb-3 border-left-0"
+                        id={"pass"}
+                        placeholder={"رمز عبور خود را وارد نمایید"}
+                    />
+                    <div className="input-group-append">
+                        <div className="Icon input-group-text" onClick={togglePassword}>
+                            {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                        </div>
+                    </div>
+                </PasswordDiv>
             </div>
         </Form>
     );
 }
 
-const RegisterDiv = styled.div`
-  h4 {
-    color: rgba(41, 80, 157);
-    font-weight: 800;
-    right: 0 !important;
-  }
-
-  label {
-    font-weight: 500;
-  }
-
-  input {
-    font-size: 14px;
+const PasswordDiv = styled.div`
+  .Icon {
+    background-color: white;
+    border-right: 0;
+    height: 35px;
     border-radius: 8px !important;
+    cursor: pointer;
   }
 
-  input:focus {
+  .Icon svg {
+    color: #7ac3f0;
+    transition: all ease-in-out 0.5s;
+  }
+
+  .Icon:hover svg {
+    color: #206ee9;
+    transform: scale(1.1);
+  }
+
+  input:focus + .input-group-append .Icon {
     box-shadow: unset;
-    border-color: rgba(41, 80, 157) !important;
-  }
-
-  .registerBTN {
-    background-color: #29509d;
-    color: white;
-    border-radius: 6px !important;
-    transition: all ease 0.5s;
-  }
-
-  .registerBTN:hover {
-    background-color: #7ac3f0;
-    z-index: unset !important;
-  }
-
-  @media only screen and (min-width: 992px) {
-    .Form-Container {
-      width: 45% !important;
-    }
+    border: 1px solid rgba(41, 80, 157) !important;
   }
 `;
 
