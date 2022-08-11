@@ -27,7 +27,7 @@ const Register = (props) => {
                         <h4 className="px-3 mb-4 pb-1 align-self-start">ثبت نام در سیستم</h4>
                         <Form inputs={items}/>
                         <Link to="/" type="button" className="btn registerBTN align-self-start px-4 mt-3 mr-3">ثبت نام</Link>
-                        <p className="px-3 mt-4">قبلا عضو شده اید ؟ <Link to="/login" className="align-self-start">وارد</Link> شوید</p>
+                        <p className="px-3 mt-4">قبلا عضو شده اید ؟ <Link to="/login" className="align-self-start text-decoration-none">وارد</Link> شوید</p>
                     </div>
                 </div>
             </RegisterDiv>
