@@ -2,43 +2,37 @@ import React from "react";
 import GlobalStyle from "../containers/Global/GlobalStyle";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import Form from "../components/UserPages/Form/Form";
 
 const Login = (props) => {
     return (
-        <>
-            <GlobalStyle color={"#f9fafb"}/>
-            <RegisterDiv className="container pt-5 mt-4">
-                <div className="d-flex justify-content-center align-items-center">
-                    <div className="Form-Container w-100">
-                        <h4 className="mb-4 pb-1 align-self-start">ورود به سیستم</h4>
-                        <div className="">
-                            <label>ایمیل</label>
-                            <input type="email" className="form-control mb-3" name="email" id="email"
-                                   placeholder="ایمیل خود را وارد نمایید"/>
-                        </div>
-                        <div className="">
-                            <label>رمز عبور</label>
-                            <input type="password" className="form-control mb-3" name="password" id="password"
-                                   placeholder="رمز عبور خود را وارد نمایید"/>
-                        </div>
-                        <Link to="/" type="button" className="btn registerBTN align-self-start px-4 mt-3">
-                            ورود به
-                            سیستم
-                        </Link>
-                        <p className="mt-4">
-                            اگر رمز عبور خود را فراموش کرده اید
-                            <Link to="/forgotPassword" className="align-self-start text-decoration-none">کلیک</Link>
-                            کنید
-                        </p>
-                        <p className="mt-2">
-                            هنوز عضو نشده اید؟
-                            <Link to="/register" className="align-self-start text-decoration-none"> ثبت نام</Link>
-                            کنید
-                        </p>
-                    </div>
-                </div>
-            </RegisterDiv>
-        </>
+        <Form
+            title={"ورود به سیستم"}
+            linkText={"کلیک"}
+            text={"هنوز عضو نشده اید "}
+            linkText2={"ثبت نام"}
+            text2={" کنید"}
+            login
+        >
+            <div>
+                <label htmlFor={"email"}>ایمیل</label>
+                <input
+                    type={"email"}
+                    className="form-control mb-3"
+                    id={"email"}
+                    placeholder={"ایمیل خود را وارد نمایید"}
+                />
+            </div>
+            <div>
+                <label htmlFor={"pass"}>رمز عبور</label>
+                <input
+                    type={"password"}
+                    className="form-control mb-3"
+                    id={"pass"}
+                    placeholder={"رمز عبور خود را وارد نمایید"}
+                />
+            </div>
+        </Form>
     );
 }
 
