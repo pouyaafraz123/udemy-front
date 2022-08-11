@@ -1,18 +1,18 @@
-import Title from "../../Title";
-import Text from "../../Text";
+import Title from "../../../Title";
+import Text from "../../../Text";
 import styled from "styled-components";
 import AliceCarousel from "react-alice-carousel";
-import linkedin from "../../../img/linkedin.svg";
-import instagram from "../../../img/instagram.svg";
-import twitter from "../../../img/twitter.svg";
-import user1 from "../../../img/user1.jpeg";
-import user2 from "../../../img/user2.jpg";
-import user3 from "../../../img/user3.jpg";
-import user4 from "../../../img/user4.jpeg";
-import user5 from "../../../img/user5.jpeg";
-import user6 from "../../../img/user6.jpeg";
-import user7 from "../../../img/user7.jpeg";
-import FeedbackItem from "./Feature/FeedbackItem";
+import linkedin from "../../../../img/linkedin.svg";
+import instagram from "../../../../img/instagram.svg";
+import twitter from "../../../../img/twitter.svg";
+import user1 from "../../../../img/user1.jpeg";
+import user2 from "../../../../img/user2.jpg";
+import user3 from "../../../../img/user3.jpg";
+import user4 from "../../../../img/user4.jpeg";
+import user5 from "../../../../img/user5.jpeg";
+import user6 from "../../../../img/user6.jpeg";
+import user7 from "../../../../img/user7.jpeg";
+import FeedbackItem from "../Feature/FeedbackItem";
 
 const items = [
     {
@@ -69,7 +69,7 @@ const responsive = {
 
 const FeedbackSection = () => {
     return (
-        <Content className={"my-5"}>
+        <Content className={"my-5"} id="Comments">
             <Top className={"mb-3"}>
                 <Title>نظرات کاربران</Title>
                 <Text>مارا در شبکه های اجتماعی دنبال کنید!</Text>

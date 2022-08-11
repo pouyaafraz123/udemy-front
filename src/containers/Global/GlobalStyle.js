@@ -1,12 +1,22 @@
 import {createGlobalStyle} from "styled-components";
 
-const GlobalStyle = () => {
-    return <Global/>
+const GlobalStyle = (props) => {
+    return <Global color={props.color}/>
 }
 
 const Global = createGlobalStyle`
+
+  * {
+    -ms-overflow-style: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
   body {
     font-family: iranyekan, sans-serif;
+    background-color: ${props => props.color};
   }
 
   html {

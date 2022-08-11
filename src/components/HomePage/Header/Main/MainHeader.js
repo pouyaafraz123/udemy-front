@@ -5,7 +5,7 @@ import Text from "../../../Text";
 
 const MainHeader = () => {
     return (
-        <Content className={"container-fluid"}>
+        <Content className={"container-fluid"} id="Home">
             <Row className={"row"}>
                 <Right className={"col-xl-6 col-md-12 col-12 d-flex justify-content-center align-items-center"}>
                     <RightContent>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Questions = (props) => {
     return (
-        <Accordion className="py-5">
+        <Accordion className="py-5" id="Questions">
             <div className="container pb-5">
                 <h3 className="text-center pt-2 pb-4">سوالات متداول</h3>
                 <div id="accordion" className="d-flex flex-column justify-content-center align-items-center">

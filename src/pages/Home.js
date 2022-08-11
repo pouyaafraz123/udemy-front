@@ -4,7 +4,7 @@ import Header from "../components/HomePage/Header/Header";
 import Body from "../components/HomePage/Body/Body";
 import Footer from "../components/HomePage/Footer/Footer";
 
-const HomePage = () => {
+const Home = () => {
     return (
         <>
             <Container>
@@ -22,4 +22,4 @@ const Container = styled.div`
 
 `;
 
-export default HomePage;
+export default Home;

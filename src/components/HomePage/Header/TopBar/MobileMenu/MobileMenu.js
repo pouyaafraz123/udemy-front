@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import MenuItems from "../MenuItems/MenuItems";
+import { Link } from "react-router-dom";
 
 const MobileMenu = (props) => {
     return (
         <MobileItems>
             <MenuItems clicked={props.clicked}/>
             <div className="d-flex flex-column pt-3">
-                <a className="nav-link" onClick={props.clicked} href="#">ثبت نام</a>
-                <a className="nav-link pt-0 mt-0" onClick={props.clicked} href="#">ورود</a>
+                <Link to="/register" className="nav-link" onClick={props.clicked}>ثبت نام</Link>
+                <Link to="/login" className="nav-link pt-0 mt-0" onClick={props.clicked}>ورود</Link>
             </div>
         </MobileItems>
     );

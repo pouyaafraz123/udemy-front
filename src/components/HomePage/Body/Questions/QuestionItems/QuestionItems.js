@@ -31,9 +31,9 @@ const QuestionItems = (props) => {
                 <div className="card-header border-0 bg-white">
                     <a className="collapsed card-link" data-toggle="collapse" href={"#" + question.id}>
                         <div className="d-flex justify-content-between align-items-center">
-                            <dic>
+                            <div>
                                 <Icon><SegmentIcon className="ml-2"/></Icon> {question.title}
-                            </dic>
+                            </div>
                             <SmallIcon>
                                 <KeyboardArrowDownIcon/>
                             </SmallIcon>

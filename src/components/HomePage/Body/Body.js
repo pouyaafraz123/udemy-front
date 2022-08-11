@@ -1,6 +1,6 @@
 import Layout from "../../../containers/Layout/Layout";
 import FeatureSection from "./Feature/FeatureSection";
-import FeedbackSection from "./FeedbackSection";
+import FeedbackSection from "./Feedback/FeedbackSection";
 import Questions from "./Questions/Questions";
 
 const Body = () => {

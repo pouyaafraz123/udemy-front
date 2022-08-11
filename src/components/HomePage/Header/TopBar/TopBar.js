@@ -3,11 +3,12 @@ import MenuItems from "./MenuItems/MenuItems";
 import styled from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from "react-router-dom";
 
 const TopBar = (props) => {
     return (
         <>
-            <NavBar className="navbar navbar-expand-xl bg-light navbar-light" id="Home">
+            <NavBar className="navbar navbar-expand-xl bg-light navbar-light sticky-top">
                 <div className="container">
                     <a className="navbar-brand pl-lg-5" href="#">یادینا</a>
                     <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}
@@ -21,8 +22,8 @@ const TopBar = (props) => {
                         </ul>
                     </div>
                     <div className="btn-group d-xl-block d-lg-none d-none">
-                        <button type="button" className="btn registerBTN">ثبت نام</button>
-                        <button type="button" className="btn loginBTN">ورود</button>
+                        <Link to="/register" type="button" className="btn registerBTN">ثبت نام</Link>
+                        <Link to="/login" type="button" className="btn loginBTN">ورود</Link>
                     </div>
                 </div>
             </NavBar>
@@ -33,6 +34,7 @@ const TopBar = (props) => {
 const NavBar = styled.nav`
   background-color: #f9fafb !important;
   border-bottom: 4px solid white;
+  z-index: 100;
   
   .toggler-box {
     background-color: white;

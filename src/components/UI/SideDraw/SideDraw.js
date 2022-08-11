@@ -23,7 +23,7 @@ const SideDrawDiv = styled.div`
     position: fixed;
     width: 320px;
     max-width: 70%;
-    height: 100%;
+    height: 100vh;
     right: 0;
     top: 0;
     z-index: 200;

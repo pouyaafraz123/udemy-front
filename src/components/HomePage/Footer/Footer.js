@@ -5,7 +5,7 @@ const Footer = (props) => {
     return (
         <>
             <FooterDiv>
-                <div className="container-fluid">
+                <div className="container-fluid" id="AboutUs">
                     <div className="row text-white">
                         <div className="col-lg-6 col-12">
                             <h4>سامانه یادینا</h4>
