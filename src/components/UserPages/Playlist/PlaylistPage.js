@@ -59,7 +59,7 @@ const PlaylistPage = () => {
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>
-                <Box>1</Box>
+                <Box className={"selected"}>1</Box>
                 <Box><KeyboardArrowLeftIcon/></Box>
             </NextPage>
         </Container>
@@ -111,7 +111,33 @@ const ItemsContainer = styled.div`
   
 `;
 
-const NextPage = styled.div``;
-const Box = styled.div``;
+const NextPage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 20px;
+  .selected{
+    opacity: 1;
+  }
+`;
+const Box = styled.button`
+  opacity: .38;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  svg{
+    font-size: 24px;
+  }
+  &:not(:last-child){
+    margin-left: 10px;
+  }
+  outline: none;
+  border: #b8b9ba solid 1px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+`;
 
 export default PlaylistPage;
