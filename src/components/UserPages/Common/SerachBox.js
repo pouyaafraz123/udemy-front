@@ -3,7 +3,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import styled from "styled-components";
 
-const SearchBox = () => {
+const SearchBox = ({isList,setIsList}) => {
     return (
         <Box>
             <Title>لیست پخش ها</Title>
@@ -14,8 +14,13 @@ const SearchBox = () => {
                 </InputGroup>
                 <Button className={"s-btn"}>جستجو</Button>
                 <Views>
-                    <Img className={"selected"}><ViewModuleIcon sx={{fontSize:"30px"}}/></Img>
-                    <Img><ViewListIcon sx={{fontSize:"30px"}}/></Img>
+                    <Img
+                        className={`${!isList?"selected":""}`}
+                        onClick={()=>setIsList(false)}
+                    >
+                        <ViewModuleIcon sx={{fontSize:"30px"}}/>
+                    </Img>
+                    <Img className={`${isList?"selected":""}`} onClick={()=>setIsList(true)}><ViewListIcon sx={{fontSize:"30px"}}/></Img>
                 </Views>
             </Middle>
             <Button>افزودن لیست پخش جدید</Button>

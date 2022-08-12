@@ -8,6 +8,8 @@ import i4 from "../../../../assets/images/i4.jpg";
 import GridContent from "../../Common/GridContent";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import {useState} from "react";
+import ListContent from "../../Common/ListContent";
 
 const items = [
     {
@@ -16,7 +18,8 @@ const items = [
         text: "کانال برنامه نویسی شی گرا",
         comment: 0,
         content: 0,
-        author: "جعفر تنها"
+        author: "جعفر تنها",
+        university: "دانشگاه تبریز"
     },
     {
         img: i2,
@@ -24,7 +27,8 @@ const items = [
         text: "کانال متخصص جاوا",
         comment: 2,
         content: 3,
-        author: "مسعود توکلی"
+        author: "مسعود توکلی",
+        university: "دانشگاه تبریز"
     },
     {
         img: i3,
@@ -32,7 +36,8 @@ const items = [
         text: "کانال متخصص UI (طراحی رابط کاربری)",
         comment: 4,
         content: 10,
-        author: "جعفر تنها"
+        author: "جعفر تنها",
+        university: "دانشگاه تبریز"
     },
     {
         img: i4,
@@ -40,22 +45,24 @@ const items = [
         text: "کانال متخصص UI (طراحی رابط کاربری)",
         comment: 0,
         content: 0,
-        author: "جعفر تنها"
+        author: "جعفر تنها",
+        university: "دانشگاه تبریز"
     },
 ];
 const PlaylistPage = () => {
+    const [isList, setIsList] = useState(false);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
-            <SearchBox/>
+            <SearchBox isList={isList} setIsList={setIsList}/>
             <Bottom>
                 <ButtonGroup>
                     <Button className={"selected"}>همه ی لیست ها</Button>
                     <Button>لیست های من</Button>
                 </ButtonGroup>
-                <ItemsContainer>
-                    {renderItems(items)}
-                </ItemsContainer>
+
+                {renderItems(items, isList)}
+
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>
@@ -66,7 +73,21 @@ const PlaylistPage = () => {
     );
 }
 
-const renderItems = (items) => {
+const renderItems = (items, isList) => {
+    if (isList)
+        return renderList(items)
+    return <GridContainer>{renderGrids(items)}</GridContainer>;
+}
+
+const renderList = (items) => {
+    return items.map((item, index) => {
+        return (
+            <ListContent item={item} index={index} key={index}/>
+        );
+    });
+}
+
+const renderGrids = (items) => {
     return items.map((item, index) => {
         return (
             <GridContent item={item}/>
@@ -103,7 +124,7 @@ const Button = styled.button`
     background: rgba(156, 163, 175, .1);
   }
 `;
-const ItemsContainer = styled.div`
+const GridContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
