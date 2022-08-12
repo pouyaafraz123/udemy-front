@@ -1,9 +1,9 @@
 import Title from "../../../Title";
 import Text from "../../../Text";
 import styled from "styled-components";
-import feature1 from "../../../../img/feature1.svg";
-import feature2 from "../../../../img/feature2.svg";
-import feature3 from "../../../../img/feature3.svg";
+import feature1 from "../../../../assets/images/feature1.svg";
+import feature2 from "../../../../assets/images/feature2.svg";
+import feature3 from "../../../../assets/images/feature3.svg";
 import FeatureItem from "./FeatureItem";
 import {useState} from "react";
 

@@ -8,11 +8,12 @@ import "jquery/dist/jquery.min";
 import "@popperjs/core/dist/umd/popper.min";
 import "./assets/fonts/fonts.css";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
+import App from "./app/App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <PagesRouts/>
+        <App/>
     </React.StrictMode>
 );
 

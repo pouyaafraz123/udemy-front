@@ -1,0 +1,118 @@
+import styled from "styled-components";
+import SearchBox from "../Common/SerachBox";
+import GlobalStyle from "../../../containers/Global/GlobalStyle";
+import i1 from "../../../assets/images/i1.jpg";
+import i2 from "../../../assets/images/i2.jpg";
+import i3 from "../../../assets/images/i3.jpg";
+import i4 from "../../../assets/images/i4.jpg";
+import GridContent from "../Common/GridContent";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
+const items = [
+    {
+        img: i1,
+        title: "حلقه ها",
+        text: "کانال برنامه نویسی شی گرا",
+        comment: 0,
+        content: 0,
+        author: "جعفر تنها"
+    },
+    {
+        img: i2,
+        title: "JavaFx",
+        text: "کانال متخصص جاوا",
+        comment: 2,
+        content: 3,
+        author: "مسعود توکلی"
+    },
+    {
+        img: i3,
+        title: "کاربرد تجربه کاربری در طراحی رابط کاربری",
+        text: "کانال متخصص UI (طراحی رابط کاربری)",
+        comment: 4,
+        content: 10,
+        author: "جعفر تنها"
+    },
+    {
+        img: i4,
+        title: "مبانی و اصول اولیه در طراحی UI",
+        text: "کانال متخصص UI (طراحی رابط کاربری)",
+        comment: 0,
+        content: 0,
+        author: "جعفر تنها"
+    },
+];
+const PlaylistPage = () => {
+    return (
+        <Container>
+            <GlobalStyle color={"#f3f4f6"}/>
+            <SearchBox/>
+            <Bottom>
+                <ButtonGroup>
+                    <Button className={"selected"}>همه ی لیست ها</Button>
+                    <Button>لیست های من</Button>
+                </ButtonGroup>
+                <ItemsContainer>
+                        {renderItems(items)}
+                </ItemsContainer>
+            </Bottom>
+            <NextPage>
+                <Box><KeyboardArrowRightIcon/></Box>
+                <Box>1</Box>
+                <Box><KeyboardArrowLeftIcon/></Box>
+            </NextPage>
+        </Container>
+    );
+}
+
+const renderItems = (items) => {
+    return items.map((item, index) => {
+            return (
+                    <GridContent item={item}/>
+            );
+        });
+}
+
+const Container = styled.div`
+  margin: 100px;
+`;
+const Bottom = styled.div`
+  margin-top: 20px;
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 20px;
+  .selected {
+    background: rgba(41, 80, 157, .1);
+    color: rgba(41, 80, 157);
+  }
+`;
+const Button = styled.button`
+  color: #9ca3af;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 5px;
+
+  &:hover {
+    background: rgba(156, 163, 175, .1);
+  }
+`;
+const ItemsContainer = styled.div`
+    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+  grid-template-rows: auto;
+  grid-gap: 25px;
+  
+`;
+
+const NextPage = styled.div``;
+const Box = styled.div``;
+
+export default PlaylistPage;

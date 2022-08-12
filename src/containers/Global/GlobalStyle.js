@@ -8,6 +8,7 @@ const Global = createGlobalStyle`
 
   * {
     -ms-overflow-style: none;
+    font-family: iranyekan,sans-serif;
   }
 
   ::-webkit-scrollbar {

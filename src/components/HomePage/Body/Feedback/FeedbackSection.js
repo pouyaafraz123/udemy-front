@@ -2,16 +2,16 @@ import Title from "../../../Title";
 import Text from "../../../Text";
 import styled from "styled-components";
 import AliceCarousel from "react-alice-carousel";
-import linkedin from "../../../../img/linkedin.svg";
-import instagram from "../../../../img/instagram.svg";
-import twitter from "../../../../img/twitter.svg";
-import user1 from "../../../../img/user1.jpeg";
-import user2 from "../../../../img/user2.jpg";
-import user3 from "../../../../img/user3.jpg";
-import user4 from "../../../../img/user4.jpeg";
-import user5 from "../../../../img/user5.jpeg";
-import user6 from "../../../../img/user6.jpeg";
-import user7 from "../../../../img/user7.jpeg";
+import linkedin from "../../../../assets/images/linkedin.svg";
+import instagram from "../../../../assets/images/instagram.svg";
+import twitter from "../../../../assets/images/twitter.svg";
+import user1 from "../../../../assets/images/user1.jpeg";
+import user2 from "../../../../assets/images/user2.jpg";
+import user3 from "../../../../assets/images/user3.jpg";
+import user4 from "../../../../assets/images/user4.jpeg";
+import user5 from "../../../../assets/images/user5.jpeg";
+import user6 from "../../../../assets/images/user6.jpeg";
+import user7 from "../../../../assets/images/user7.jpeg";
 import FeedbackItem from "../Feature/FeedbackItem";
 
 const items = [

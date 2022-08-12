@@ -1,12 +1,8 @@
-import Home from "../pages/Home";
-import GlobalStyle from "../containers/Global/GlobalStyle";
+import PagesRouts from "../routes/PagesRoutes";
 
 function App() {
     return (
-        <>
-            <GlobalStyle/>
-            <Home/>
-        </>
+        <PagesRouts/>
     );
 }
 
