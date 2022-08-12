@@ -13,6 +13,7 @@ const DashBoard = (props) => {
 }
 
 const DashboardContainer = styled.div`
+  padding-right: 30px;
     display: grid;
   grid-template-columns: repeat(auto-fit,minmax(600px,1fr));
   @media only screen and (max-width: 740px){

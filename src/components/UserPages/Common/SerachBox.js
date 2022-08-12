@@ -12,7 +12,7 @@ const SearchBox = () => {
                     <Icon><SearchIcon/></Icon>
                     <Input placeholder={"جستجو بر اساس لیست نام پخش ..."}></Input>
                 </InputGroup>
-                <Button>جستجو</Button>
+                <Button className={"s-btn"}>جستجو</Button>
                 <Views>
                     <Img className={"selected"}><ViewModuleIcon sx={{fontSize:"30px"}}/></Img>
                     <Img><ViewListIcon sx={{fontSize:"30px"}}/></Img>
@@ -28,6 +28,11 @@ const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: start;
+  @media only screen and (max-width: 450px){
+    .s-btn{
+      display: none;
+    }
+  }
 `;
 const Title = styled.h1`
   color: rgba(41, 80, 157);
@@ -63,6 +68,10 @@ const Input = styled.input`
   outline: none;
   background: transparent;
   width: 480px;
+  @media only screen and (max-width: 867px){
+    max-width: 230px;
+    width: 100%;
+  }
   font-size: 14px;
   color:rgba(151,143,143);
   &::placeholder{

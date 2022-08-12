@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import UserLayout from "../components/UserPages/UserLayout/UserLayout";
 import DashBoard from "../components/UserPages/UserLayout/DashBoard/DashBoard";
 import Home from "../pages/Home";
-import PlaylistPage from "../components/UserPages/Playlist/PlaylistPage";
+import PlaylistPage from "../components/UserPages/UserLayout/Playlist/PlaylistPage";
 
 const PagesRoutes = () => {
     return (

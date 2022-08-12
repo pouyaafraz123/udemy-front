@@ -19,7 +19,7 @@ class UserLayout extends Component {
                 <GlobalStyle color={"#f3f4f6"}/>
                 <SideBar open={this.state.open}/>
                 <UserLayoutDiv>
-                    <div className="container-fluid mt-5 pt-3  pl-lg-5 pl-md-5 pl-3">
+                    <div className="container-fluid mt-5 pt-3 pl-lg-5 pl-md-5 pl-3 mx-auto">
                         <Greeting clicked={() => this.sideDrawHandler()}/>
                         {this.props.inside}
                     </div>
@@ -30,13 +30,24 @@ class UserLayout extends Component {
 }
 
 const UserLayoutDiv = styled.div`
-  margin-right: 400px;
+  margin-right: 360px;
+  @media only screen and (max-width: 1191px) {
+    margin-right: 36px;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-right: 0;
+  }
+  
+  /*margin-right: 400px;
+  margin-left: 34px;
   @media only screen and (max-width: 1191px) {
     margin-right: 70px;
+    margin-left: 54px;
   }
   @media only screen and (max-width: 576px) {
     margin-right: 40px;
-  }
+    margin-left: 24px;
+  }*/
 `;
 
 export default UserLayout;
