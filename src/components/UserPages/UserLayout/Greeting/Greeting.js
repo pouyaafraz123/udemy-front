@@ -27,11 +27,15 @@ const Greeting = (props) => {
 
 const Greetingdiv = styled.div`
   margin-bottom: 60px;
+  @media only screen and (max-width: 576px){
+    margin-right: -20px;
+  }
     small {
       font-size: 11px !important;
     }
 
   .toggler-box {
+    margin-left: 23px;
     background-color: white;
     border-radius: 5px;
     padding: 3px 2px;

@@ -54,7 +54,7 @@ const PlaylistPage = () => {
                     <Button>لیست های من</Button>
                 </ButtonGroup>
                 <ItemsContainer>
-                        {renderItems(items)}
+                    {renderItems(items)}
                 </ItemsContainer>
             </Bottom>
             <NextPage>
@@ -68,10 +68,10 @@ const PlaylistPage = () => {
 
 const renderItems = (items) => {
     return items.map((item, index) => {
-            return (
-                    <GridContent item={item}/>
-            );
-        });
+        return (
+            <GridContent item={item}/>
+        );
+    });
 }
 
 const Container = styled.div`
@@ -84,6 +84,7 @@ const ButtonGroup = styled.div`
   justify-content: start;
   align-items: center;
   margin-bottom: 20px;
+
   .selected {
     background: rgba(41, 80, 157, .1);
     color: rgba(41, 80, 157);
@@ -103,12 +104,12 @@ const Button = styled.button`
   }
 `;
 const ItemsContainer = styled.div`
-    width: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-template-rows: auto;
   grid-gap: 25px;
-  
+
 `;
 
 const NextPage = styled.div`
@@ -117,7 +118,8 @@ const NextPage = styled.div`
   justify-content: start;
   align-items: center;
   margin-top: 20px;
-  .selected{
+
+  .selected {
     opacity: 1;
   }
 `;
@@ -126,14 +128,17 @@ const Box = styled.button`
   width: 30px;
   height: 30px;
   font-size: 16px;
-  svg{
+
+  svg {
     font-size: 24px;
   }
-  &:not(:last-child){
+
+  &:not(:last-child) {
     margin-left: 10px;
   }
+
   outline: none;
-  border: #b8b9ba solid 1px ;
+  border: #b8b9ba solid 1px;
   display: flex;
   justify-content: center;
   align-items: center;
