@@ -17,6 +17,7 @@ const Greeting = (props) => {
 }
 
 const Greetingdiv = styled.div`
+  margin-bottom: 120px;
     small {
       font-size: 11px !important;
     }

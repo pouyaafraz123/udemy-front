@@ -64,6 +64,7 @@ const DashboardCard = (props) => {
 const CardDiv = styled.div`
   border-radius: 8px !important;
   .Card-Icon-Box {
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;

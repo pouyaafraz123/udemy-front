@@ -75,7 +75,6 @@ const renderItems = (items) => {
 }
 
 const Container = styled.div`
-  margin: 100px;
 `;
 const Bottom = styled.div`
   margin-top: 20px;

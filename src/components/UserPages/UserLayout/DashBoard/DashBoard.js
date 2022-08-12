@@ -1,14 +1,23 @@
 import React from "react";
 import DashboardCard from "./DashboardCard/DashboardCard";
+import styled from "styled-components";
 
 const DashBoard = (props) => {
     return(
         <>
-            <div className="pl-4 pt-5 mt-3">
+            <DashboardContainer className="pl-4 pt-5 mt-3">
                 <DashboardCard />
-            </div>
+            </DashboardContainer>
         </>
     );
 }
+
+const DashboardContainer = styled.div`
+    display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(600px,1fr));
+  grid-template-rows: auto;
+  column-gap: 70px;
+  row-gap: 10px;
+`;
 
 export default DashBoard;
