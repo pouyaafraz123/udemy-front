@@ -18,7 +18,7 @@ const Form = (props) => {
                     {renderLogin(props.login)}
                     <p className="px-3 mt-4">
                         {props.text}
-                        <Link to="/login"
+                        <Link to={props.login ? "/register" : "/login"}
                               className="align-self-start text-decoration-none">
                             {props.linkText2}
                         </Link>
@@ -32,7 +32,7 @@ const Form = (props) => {
 }
 
 const renderLogin = (login)=>{
-    return login?<p className="px-3 mt-4">اگر رمز عبور خود را فراموش کرده اید <Link to="/login"
+    return login?<p className="px-3 mt-4">اگر رمز عبور خود را فراموش کرده اید <Link to="/forgotPassword"
               className="align-self-start text-decoration-none">کلیک </Link>
         کنید
     </p> : "";

@@ -16,7 +16,7 @@ const Login = (props) => {
             text={"هنوز عضو نشده اید "}
             linkText2={"ثبت نام"}
             text2={" کنید"}
-            login
+            login={true}
         >
             <div>
                 <label htmlFor={"email"}>ایمیل</label>

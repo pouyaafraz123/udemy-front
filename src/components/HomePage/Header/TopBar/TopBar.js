@@ -4,13 +4,30 @@ import styled from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
+import {Link as Links} from "react-scroll";
+import {animateScroll as scroll} from "react-scroll";
+
+const scrollToTop = () => {
+    scroll.scrollToTop();
+};
 
 const TopBar = (props) => {
     return (
         <>
             <NavBar className="navbar navbar-expand-xl bg-light navbar-light sticky-top">
                 <div className="container">
-                    <a className="navbar-brand pl-lg-5" href="#">یادینا</a>
+                    {/*<a className="navbar-brand pl-lg-5" href="#">یادینا</a>*/}
+                    <Links
+                        activeClass="active"
+                        className="navbar-brand pl-lg-5"
+                        onClick={() => scrollToTop()}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                    >
+                        یادینا
+                    </Links>
                     <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}
                          onClick={props.clicked}>
                         {props.open ? <CloseIcon style={{color: '#29509d'}} fontSize={"large"}/> :
@@ -35,6 +52,10 @@ const NavBar = styled.nav`
   background-color: #f9fafb !important;
   border-bottom: 4px solid white;
   z-index: 100;
+  
+  .navbar-brand {
+    cursor: pointer;
+  }
   
   .toggler-box {
     background-color: white;
