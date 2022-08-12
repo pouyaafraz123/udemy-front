@@ -40,7 +40,7 @@ const DashboardCard = (props) => {
     return (
         cards.map(card => {
             return (
-                <CardDiv key={card.icon} className="card mb-5 pt-4 pb-1 d-flex flex-row">
+                <CardDiv key={card.title} className="card mb-5 pt-4 pb-1 d-flex flex-row">
                     <div className="Card-Icon-Box">
                         <div className="Card-Icon">
                             {card.icon}

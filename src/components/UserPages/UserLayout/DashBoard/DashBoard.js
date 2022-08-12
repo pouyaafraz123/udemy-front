@@ -5,7 +5,7 @@ import styled from "styled-components";
 const DashBoard = (props) => {
     return(
         <>
-            <DashboardContainer className="pl-4 pt-5 mt-3">
+            <DashboardContainer className="pl-4">
                 <DashboardCard />
             </DashboardContainer>
         </>

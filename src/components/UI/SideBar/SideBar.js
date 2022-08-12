@@ -32,7 +32,7 @@ const SideBarDiv = styled.div`
     transition: transform ease-out 0.3s;
     border-radius: 35px 0 0 35px;
   }
-  
+
   .Open {
     transform: translateX(0);
   }
@@ -41,11 +41,20 @@ const SideBarDiv = styled.div`
     transform: translateX(100%);
   }
 
-  @media only screen and (max-width: 1192px) {
+  @media only screen and (min-width: 1192px) {
     .SideDraw {
-      display: none;
+      display: block;
+      transform: translateX(0);
     }
   }
+  
+  @media only screen and (max-width: 1191px) {
+    .SideDraw {
+      display: block;
+      border-radius: 0 !important;
+    }
+  }
+
 `;
 
 export default SideBar;
