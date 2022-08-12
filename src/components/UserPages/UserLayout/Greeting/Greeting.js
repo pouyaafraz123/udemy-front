@@ -17,8 +17,8 @@ const Greeting = (props) => {
                 </div>
                 <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}
                      onClick={props.clicked}>
-                    {props.open ? <CloseIcon style={{color: '#29509d'}} fontSize={"large"}/> :
-                        <MenuIcon style={{color: '#29509d'}} fontSize={"large"}/>}
+                    {props.open ? <CloseIcon fontSize={"large"}/> :
+                        <MenuIcon fontSize={"large"}/>}
                 </div>
             </Greetingdiv>
         </>
@@ -39,6 +39,12 @@ const Greetingdiv = styled.div`
     background-color: white;
     border-radius: 5px;
     padding: 3px 2px;
+    color: rgba(122,195,240,1);
+    transition: all ease 0.5s;
+  }
+  
+  .toggler-box:hover {
+    color: #29509d;
   }
 `;
 
