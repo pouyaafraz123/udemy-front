@@ -17,7 +17,7 @@ class UserLayout extends Component {
         return (
             <>
                 <GlobalStyle color={"#f3f4f6"}/>
-                <SideBar open={this.state.open}/>
+                <SideBar open={this.state.open} clicked={() => this.sideDrawHandler()}/>
                 <UserLayoutDiv>
                     <div className="container-fluid mt-5 pt-3 pl-lg-5 pl-md-5 pl-3 mx-auto">
                         <Greeting clicked={() => this.sideDrawHandler()}/>
