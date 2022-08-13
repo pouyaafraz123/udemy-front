@@ -211,6 +211,7 @@ const SmallText = styled.div`
   font-size: 12px;
 `;
 const Buttons = styled.div`
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,6 +252,7 @@ const Button = styled.button`
   padding: 4px 8px;
   border-radius: 5px;
   transition: all .3s;
+  flex: 0 0 auto;
 `;
 
 export default CommentList;
