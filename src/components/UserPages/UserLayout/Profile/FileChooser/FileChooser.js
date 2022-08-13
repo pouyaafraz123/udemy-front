@@ -25,9 +25,9 @@ const FileChooser = (props) => {
             <AvatarDiv {...getRootProps()} onClick={open}>
                 <div className="Image-Box">
                     {
-                        yourImage.map((upFile) => {
+                        yourImage.map((upFile,index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     <img src={upFile.preview}
                                          style={{width: '120px', height: '120px'}}
                                          alt="preview"/>

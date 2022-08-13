@@ -67,7 +67,7 @@ const UniversityManagement = () => {
 const renderList = (items) => {
     return items.map((item, index) => {
         return (
-           <UniversityList uni={item} index={index}/>
+           <UniversityList uni={item} index={index} key={index}/>
         );
     });
 }

@@ -33,7 +33,7 @@ const items = [
 ]
 
 const Role = (props) => {
-    const identifyRole = (role) => {
+    const identifyRole = (role,index) => {
         let classes = "";
         if (role.includes("edit")) {
             classes = "Role-edit";
@@ -44,11 +44,11 @@ const Role = (props) => {
         } else if (role.includes("list")) {
             classes = "Role-list";
         }
-        return <div className={"mr-1 mb-2 Role " + classes}>{role}</div>
+        return <div className={"mr-1 mb-2 Role " + classes} key={index}>{role}</div>
     }
-    return items.map((item) => {
+    return items.map((item,index) => {
         return (
-            <RoleCard key={item.number} className="card mt-3">
+            <RoleCard key={index} className="card mt-3">
                 <div className="card-body">
                     <div className="d-flex flex-row pr-3">
                         <span className="Number-Box">{item.number}</span>
@@ -59,9 +59,9 @@ const Role = (props) => {
                     </div>
                     <div className="pr-4 mb-2">
                         {
-                            item.role.map((role) => {
+                            item.role.map((role,index) => {
                                 return (
-                                    identifyRole(role)
+                                    identifyRole(role,index)
                                 );
                             })
                         }
