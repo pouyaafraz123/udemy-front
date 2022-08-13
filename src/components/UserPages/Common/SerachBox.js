@@ -99,6 +99,7 @@ const Button = styled.button`
   line-height: 1.25rem;
   padding: 6px 12px;
   border-radius: 5px;
+  transition: all ease 0.5s;
 
   &:hover {
     background: rgba(122, 195, 240);

@@ -2,12 +2,12 @@ import styled from "styled-components";
 import v7 from "../../../../assets/images/v7.svg";
 import v8 from "../../../../assets/images/v8.svg";
 
-const ListContent = ({uni,index}) => {
+const ListContent = ({uni, index}) => {
     return (
         <Content>
             <Top>
                 <Right>
-                    <Number>{index+1}</Number>
+                    <Number>{index + 1}</Number>
                     <Titles>
                         <Title>{uni.name}</Title>
                     </Titles>
@@ -16,12 +16,12 @@ const ListContent = ({uni,index}) => {
                     <Detail>
                         <Icon src={v7} alt={"count"}/>
                         <SmallText>
-                            {"تعداد دانشکده: "+uni.count}
+                            {"تعداد دانشکده: " + uni.count}
                         </SmallText>
                     </Detail>
                     <Detail>
                         <Icon src={v8} alt={"channel"}/>
-                        <SmallText>{"تعداد کانال ها: "+uni.channel}</SmallText>
+                        <SmallText>{"تعداد کانال ها: " + uni.channel}</SmallText>
                     </Detail>
                 </Details>
                 <Buttons>
@@ -40,9 +40,9 @@ const ListContent = ({uni,index}) => {
 }
 
 const Content = styled.div`
-  border: 1px solid rgba(222,222,222);
+  border: 1px solid rgba(222, 222, 222);
   border-radius: 10px;
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -51,21 +51,25 @@ const Content = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   transition: all .3s ease-in-out;
-  &:hover{
+
+  &:hover {
     transform: scale(1.04);
   }
-  @media only screen and (max-width: 750px){
-    &:hover{
+
+  @media only screen and (max-width: 750px) {
+    &:hover {
       transform: scale(1);
     }
   }
-  &:not(:last-child){
+
+  &:not(:last-child) {
     margin-bottom: 12px;
   }
-  @media only screen and (max-width: 690px){
+
+  @media only screen and (max-width: 690px) {
     justify-content: center;
   }
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 610px) {
     flex-direction: column;
   }
 `;
@@ -74,7 +78,7 @@ const Top = styled.div`
   justify-content: start;
   align-items: center;
   width: 100%;
-  @media only screen and (max-width: 690px){
+  @media only screen and (max-width: 690px) {
     justify-content: center;
     flex-direction: column;
     gap: 10px;
@@ -86,17 +90,18 @@ const Bottom = styled.div`
   align-items: center;
 `;
 const Paragraph = styled.p`
-    color: #bcbcbc;
+  color: #bcbcbc;
   font-size: 12px;
   font-weight: 700;
   text-align: right;
-  
-  &::before{
+
+  &::before {
     content: "\\275E";
     font-size: 1.2rem;
     color: #7ac3f0;
     padding: 4px;
   }
+
   &::after {
     content: "\\275D";
     font-size: 1.2rem;
@@ -109,7 +114,7 @@ const Right = styled.div`
   justify-content: start;
   align-items: center;
   gap: 16px;
-  @media only screen and (max-width: 690px){
+  @media only screen and (max-width: 690px) {
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -127,7 +132,7 @@ const Number = styled.div`
   align-items: center;
   font-size: 18px;
   font-family: sans-serif;
-  @media only screen and (max-width: 690px){
+  @media only screen and (max-width: 690px) {
     width: 60px;
     height: 60px;
     font-size: 30px;
@@ -164,7 +169,7 @@ const Details = styled.div`
   align-items: center;
   width: 70%;
   flex-wrap: wrap;
-  @media only screen and (max-width: 690px){
+  @media only screen and (max-width: 690px) {
     flex-direction: column;
     gap: 10px;
   }
@@ -179,37 +184,43 @@ const Detail = styled.div`
 const Icon = styled.img`
 `;
 const SmallText = styled.div`
-    font-size: 12px;
+  font-size: 12px;
 `;
 const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  @media only screen and (max-width: 690px){
+  @media only screen and (max-width: 690px) {
     margin-top: 25px;
   }
-  .green-btn{
+
+  .green-btn {
     background: #34d399;
-    &:hover{
+
+    &:hover {
       background: #059669;
     }
   }
-  .purple-btn{
+
+  .purple-btn {
     background: #a78bfa;
-    &:hover{
+
+    &:hover {
       background: #7c3aed;
     }
   }
-  .red-btn{
+
+  .red-btn {
     background: #ef4444;
-    &:hover{
+
+    &:hover {
       background: #dc2626;
     }
   }
 `;
 const Button = styled.button`
-    color: white;
+  color: white;
   font-size: 12px;
   outline: none;
   border: none;

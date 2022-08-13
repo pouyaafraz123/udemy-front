@@ -9,6 +9,7 @@ import Profile from "../components/UserPages/UserLayout/Profile/Profile";
 import PlaylistPage from "../components/UserPages/UserLayout/Playlist/PlaylistPage";
 import ChannelPage from "../components/UserPages/UserLayout/Channels/ChannelPage";
 import UserManagementPage from "../components/UserPages/UserLayout/UserManagement/UserManagementPage";
+import RoleManagement from "../components/UserPages/UserLayout/RoleManagement/RoleManagement";
 import UniversityManagement from "../components/UserPages/UserLayout/UniversityManagement/UniversityManagementPage";
 
 const PagesRoutes = () => {
@@ -23,8 +24,12 @@ const PagesRoutes = () => {
                 <Route path="admin/profile" element={<UserLayout activeItem={"profile"} inside={<Profile />}/>}/>
                 <Route path="admin/playlist" element={<UserLayout activeItem={"playlist"} inside={<PlaylistPage/>}/>}/>
                 <Route path="admin/channel" element={<UserLayout activeItem={"channel"} inside={<ChannelPage/>}/>}/>
-                <Route path="admin/userManagement" element={<UserLayout activeItem={"userManagement"} inside={<UserManagementPage/>}/>}/>
-                <Route path="admin/universityManagement" element={<UserLayout activeItem={"universityManagement"} inside={<UniversityManagement/>}/>}/>
+                <Route path="admin/userManagement"
+                       element={<UserLayout activeItem={"userManagement"} inside={<UserManagementPage/>}/>}/>
+                <Route path="admin/roleManagement"
+                       element={<UserLayout activeItem={"roleManagement"} inside={<RoleManagement/>}/>}/>
+                <Route path="admin/universityManagement"
+                       element={<UserLayout activeItem={"universityManagement"} inside={<UniversityManagement/>}/>}/>
             </Routes>
         </BrowserRouter>
     );
