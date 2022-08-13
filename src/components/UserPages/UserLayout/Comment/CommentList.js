@@ -124,7 +124,9 @@ const Paragraph = styled.p`
   font-weight: 700;
   text-align: right;
   width: 100%;
-
+  @media only screen and (max-width: 690px) {
+    text-align: center;
+  }
   &::before {
     content: "\\275E";
     font-size: 1.2rem;
