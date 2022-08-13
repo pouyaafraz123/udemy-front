@@ -4,81 +4,81 @@ import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import user3 from "../../../../assets/images/user3.jpg";
-import user4 from "../../../../assets/images/user4.jpeg";
-import user5 from "../../../../assets/images/user5.jpeg";
-import user6 from "../../../../assets/images/user6.jpeg";
-import user7 from "../../../../assets/images/user7.jpeg";
 import CommentList from "./CommentList";
 
 const items = [
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
     {
         img: user3,
-        author:"بهزاد رضازاده نوبر",
-        date:"1401/02/11 - 13:19:08",
-        content:"نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating:5,
-        text:"تنلنلنلنت"
+        author: "بهزاد رضازاده نوبر",
+        date: "1401/02/11 - 13:19:08",
+        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
+        rating: 5,
+        text: "تنلنلنلنت"
     },
 ];
-const CommentManagementPage= () => {
+const CommentManagementPage = () => {
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
             <SearchBox
                 title={"نظرات کاربران"}
-                btnText={"جستجو بر اساس اطلاعات کاربر"}
+                btnHidden
                 placeHolder={"جستجو بر اساس اطلاعات کاربر ..."}
                 hidden
             />
             <Bottom>
+                <ButtonGroup>
+                    <Button className={"selected"}>نظر های فعال</Button>
+                    <Button>نظر های غیر فعال</Button>
+                </ButtonGroup>
                 {renderList(items)}
             </Bottom>
             <NextPage>
@@ -103,6 +103,31 @@ const Container = styled.div`
 `;
 const Bottom = styled.div`
   margin-top: 20px;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .selected {
+    background: rgba(41, 80, 157, .1);
+    color: rgba(41, 80, 157);
+  }
+`;
+const Button = styled.button`
+  color: #9ca3af;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 5px;
+
+  &:hover {
+    background: rgba(156, 163, 175, .1);
+  }
 `;
 
 const NextPage = styled.div`

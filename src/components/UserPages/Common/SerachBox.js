@@ -3,7 +3,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import styled from "styled-components";
 
-const SearchBox = ({isList, setIsList, title, btnText, hidden,placeHolder}) => {
+const SearchBox = ({isList, setIsList, title, btnText, hidden,placeHolder,btnHidden}) => {
     return (
         <Box>
             <Title>{title}</Title>
@@ -28,7 +28,7 @@ const SearchBox = ({isList, setIsList, title, btnText, hidden,placeHolder}) => {
                     }
                 </Views>
             </Middle>
-            <Button>{btnText}</Button>
+            {!btnHidden?<Button>{btnText}</Button>:""}
         </Box>
     );
 }
