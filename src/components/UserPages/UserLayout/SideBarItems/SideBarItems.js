@@ -42,31 +42,31 @@ class SideBarItems extends Component {
                 id: 4
             },
             {
-                url: "/admin/user",
+                url: "/admin/userManagement",
                 title: "مدیریت کاربران",
                 icon: <PeopleIcon/>,
-                status: this.props.activeItem === "user" ? "active" : "",
+                status: this.props.activeItem === "userManagement" ? "active" : "",
                 id: 5
             },
             {
-                url: "/admin/role",
+                url: "/admin/roleManagement",
                 title: "مدیریت نقش ها",
                 icon: <PeopleIcon/>,
-                status: this.props.activeItem === "role" ? "active" : "",
+                status: this.props.activeItem === "roleManagement" ? "active" : "",
                 id: 6
             },
             {
-                url: "/admin/university",
+                url: "/admin/universityManagement",
                 title: "مدیریت دانشگاه ها",
                 icon: <AccountBalanceIcon/>,
-                status: this.props.activeItem === "university" ? "active" : "",
+                status: this.props.activeItem === "universityManagement" ? "active" : "",
                 id: 7
             },
             {
-                url: "/admin/comment",
+                url: "/admin/commentManagement",
                 title: "مدیریت نظرات",
                 icon: <ChatBubbleIcon/>,
-                status: this.props.activeItem === "comment" ? "active" : "",
+                status: this.props.activeItem === "commentManagement" ? "active" : "",
                 id: 8
             },
             {url: "/login", title: "خروج", icon: <LogoutIcon/>},

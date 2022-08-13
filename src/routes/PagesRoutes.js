@@ -22,6 +22,9 @@ const PagesRoutes = () => {
                 <Route path="admin/dashboard" element={<UserLayout activeItem={"dashboard"} inside={<DashBoard/>}/>}/>
                 <Route path="admin/profile" element={<UserLayout activeItem={"profile"} inside={<Profile />}/>}/>
                 <Route path="admin/playlist" element={<UserLayout activeItem={"playlist"} inside={<PlaylistPage/>}/>}/>
+                <Route path="admin/channel" element={<UserLayout activeItem={"channel"} inside={<ChannelPage/>}/>}/>
+                <Route path="admin/userManagement" element={<UserLayout activeItem={"userManagement"} inside={<UserManagementPage/>}/>}/>
+                <Route path="admin/universityManagement" element={<UserLayout activeItem={"universityManagement"} inside={<UniversityManagement/>}/>}/>
             </Routes>
         </BrowserRouter>
     );
