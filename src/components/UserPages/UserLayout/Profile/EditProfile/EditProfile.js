@@ -6,52 +6,54 @@ import {Link} from "react-router-dom";
 const EditProfile = (props) => {
     return (
         <>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="name">نام</label>
-                <input type="text" name="name" id="name" className="form-control"
-                       placeholder="لطفا نام جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="family">نام خانوادگی</label>
-                <input type="text" name="family" id="family" className="form-control"
-                       placeholder="لطفا نام خانوادگی جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="email">ایمیل</label>
-                <input type="email" name="email" id="email" className="form-control"
-                       placeholder="لطفا ایمیل جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="birth">تاریخ تولد</label>
-                <input type="text" name="" id="birth" className="form-control"
-                       placeholder="لطفا تاریخ تولد جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="studentCode">شماره دانشجویی</label>
-                <input type="text" name="studentCode" id="studentCode" className="form-control"
-                       placeholder="لطفا شماره دانشجویی جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="university">نام دانشگاه</label>
-                <input type="text" name="university" id="university" className="form-control"
-                       placeholder="لطفا دانشگاه جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="context">رشته تحصیلی</label>
-                <input type="text" name="context" id="context" className="form-control"
-                       placeholder="لطقا رشته تحصیلی جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="year">نیمسال تحصیلی</label>
-                <input type="text" name="year" id="year" className="form-control"
-                       placeholder="لطفا سال تحصیلی جدید خود را وارد نمایید"/>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor="bio">بیوگرافی</label>
-                <textarea name="bio" id="bio" rows="1" className="form-control"
-                          placeholder="لطفا بیوگرافی خود را وارد نمایید"></textarea>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
+            <Container>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="name">نام</label>
+                    <input type="text" name="name" id="name" className="form-control"
+                           placeholder="لطفا نام جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="family">نام خانوادگی</label>
+                    <input type="text" name="family" id="family" className="form-control"
+                           placeholder="لطفا نام خانوادگی جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="email">ایمیل</label>
+                    <input type="email" name="email" id="email" className="form-control"
+                           placeholder="لطفا ایمیل جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="birth">تاریخ تولد</label>
+                    <input type="text" name="" id="birth" className="form-control"
+                           placeholder="لطفا تاریخ تولد جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="studentCode">شماره دانشجویی</label>
+                    <input type="text" name="studentCode" id="studentCode" className="form-control"
+                           placeholder="لطفا شماره دانشجویی جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="university">نام دانشگاه</label>
+                    <input type="text" name="university" id="university" className="form-control"
+                           placeholder="لطفا دانشگاه جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="context">رشته تحصیلی</label>
+                    <input type="text" name="context" id="context" className="form-control"
+                           placeholder="لطقا رشته تحصیلی جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="year">نیمسال تحصیلی</label>
+                    <input type="text" name="year" id="year" className="form-control"
+                           placeholder="لطفا سال تحصیلی جدید خود را وارد نمایید"/>
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor="bio">بیوگرافی</label>
+                    <textarea name="bio" id="bio" rows="1" className="form-control"
+                              placeholder="لطفا بیوگرافی خود را وارد نمایید"></textarea>
+                </PropertyDiv>
+            </Container>
+            <PropertyDiv className="mb-5 profile">
                 <label htmlFor="prof">عکس پروفایل</label>
                 <FileChooser id="prof"/>
             </PropertyDiv>
@@ -62,6 +64,17 @@ const EditProfile = (props) => {
         </>
     );
 }
+
+const Container = styled.div`
+    max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(430px,1fr));
+  grid-template-rows: auto;
+  grid-column-gap: 120px;
+  @media(max-width: 500px){
+    grid-template-columns: 100%;
+  }
+`;
 
 const PropertyDiv = styled.div`
   label {

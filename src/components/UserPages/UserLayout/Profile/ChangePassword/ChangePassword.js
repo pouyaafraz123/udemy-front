@@ -11,54 +11,56 @@ const ChangePassword = (props) => {
     };
     return (
         <>
-            <PropertyDiv className="mb-5">
-                <label htmlFor={"oldPass"}>رمز فعلی</label>
-                <div className="input-group">
-                    <input
-                        type={passwordShown ? "text" : "password"}
-                        className="form-control mb-3 border-left-0"
-                        id={"oldPass"}
-                        placeholder={"لطفا رمز فعلی خود را وارد نمایید"}
-                    />
-                    <div className="input-group-append">
-                        <div className="Icon input-group-text" onClick={togglePassword}>
-                            {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+            <Container>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor={"oldPass"}>رمز فعلی</label>
+                    <div className="input-group">
+                        <input
+                            type={passwordShown ? "text" : "password"}
+                            className="form-control mb-3 border-left-0"
+                            id={"oldPass"}
+                            placeholder={"لطفا رمز فعلی خود را وارد نمایید"}
+                        />
+                        <div className="input-group-append">
+                            <div className="Icon input-group-text" onClick={togglePassword}>
+                                {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor={"newPass"}>رمز جدید</label>
-                <div className="input-group">
-                    <input
-                        type={passwordShown ? "text" : "password"}
-                        className="form-control mb-3 border-left-0"
-                        id={"newPass"}
-                        placeholder={"لطفا رمز جدید خود را وارد نمایید"}
-                    />
-                    <div className="input-group-append">
-                        <div className="Icon input-group-text" onClick={togglePassword}>
-                            {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor={"newPass"}>رمز جدید</label>
+                    <div className="input-group">
+                        <input
+                            type={passwordShown ? "text" : "password"}
+                            className="form-control mb-3 border-left-0"
+                            id={"newPass"}
+                            placeholder={"لطفا رمز جدید خود را وارد نمایید"}
+                        />
+                        <div className="input-group-append">
+                            <div className="Icon input-group-text" onClick={togglePassword}>
+                                {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </PropertyDiv>
-            <PropertyDiv className="mb-5">
-                <label htmlFor={"newPassRpt"}>رمز جدید</label>
-                <div className="input-group">
-                    <input
-                        type={passwordShown ? "text" : "password"}
-                        className="form-control mb-3 border-left-0"
-                        id={"newPassRpt"}
-                        placeholder={"لطفا رمز جدید خود را مجددا وارد نمایید"}
-                    />
-                    <div className="input-group-append">
-                        <div className="Icon input-group-text" onClick={togglePassword}>
-                            {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                </PropertyDiv>
+                <PropertyDiv className="mb-5">
+                    <label htmlFor={"newPassRpt"}>رمز جدید</label>
+                    <div className="input-group">
+                        <input
+                            type={passwordShown ? "text" : "password"}
+                            className="form-control mb-3 border-left-0"
+                            id={"newPassRpt"}
+                            placeholder={"لطفا رمز جدید خود را مجددا وارد نمایید"}
+                        />
+                        <div className="input-group-append">
+                            <div className="Icon input-group-text" onClick={togglePassword}>
+                                {passwordShown ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </PropertyDiv>
+                </PropertyDiv>
+            </Container>
             <PropertyDiv className="d-flex align-items-center justify-content-end mb-4">
                 <Link to="/" type="button"
                       className="btn registerBTN">تغییر گذرواژه</Link>
@@ -66,6 +68,17 @@ const ChangePassword = (props) => {
         </>
     );
 }
+
+const Container = styled.div`
+    max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(430px,1fr));
+  grid-template-rows: auto;
+  grid-column-gap: 120px;
+  @media(max-width: 500px){
+    grid-template-columns: 100%;
+  }
+`;
 
 const PropertyDiv = styled.div`
   .Icon {

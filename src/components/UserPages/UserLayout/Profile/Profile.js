@@ -25,7 +25,10 @@ const Profile = (props) => {
     );
 }
 
+
+
 const TabDiv = styled.div`
+  max-width: 1200px;
   button {
     background-color: transparent;
     outline: none;
