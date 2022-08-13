@@ -5,6 +5,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import user3 from "../../../../assets/images/user3.jpg";
 import CommentList from "./CommentList";
+import {useEffect} from "react";
 
 const items = [
     {
@@ -65,6 +66,9 @@ const items = [
     },
 ];
 const CommentManagementPage = () => {
+    useEffect(() => {
+        document.title = "مدیریت نظرات"
+    },[]);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>

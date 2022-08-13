@@ -15,6 +15,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {useState} from "react";
 import ListContent from "../../Common/ListContent";
+import {useEffect} from "react";
 
 const items = [
     {
@@ -83,6 +84,9 @@ const items = [
     },
 ];
 const ChannelPage = () => {
+    useEffect(() => {
+        document.title = "کانال ها"
+    },[]);
     const [isList, setIsList] = useState(false);
     return (
         <Container>

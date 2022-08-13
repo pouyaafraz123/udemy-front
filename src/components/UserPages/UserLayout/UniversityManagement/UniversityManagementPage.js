@@ -4,6 +4,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import SearchBox from "../../Common/SerachBox";
 import UniversityList from "./UniversityList";
+import {useEffect} from "react";
 
 const items = [
     {
@@ -38,6 +39,9 @@ const items = [
     }
 ];
 const UniversityManagement = () => {
+    useEffect(() => {
+        document.title = "مدیریت دانشگاه ها"
+    },[]);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>

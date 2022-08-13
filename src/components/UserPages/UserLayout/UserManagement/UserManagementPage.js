@@ -9,6 +9,7 @@ import user5 from "../../../../assets/images/user5.jpeg";
 import user6 from "../../../../assets/images/user6.jpeg";
 import user7 from "../../../../assets/images/user7.jpeg";
 import UserList from "./UserList";
+import {useEffect} from "react";
 
 const items = [
     {
@@ -67,6 +68,9 @@ const items = [
     },
 ];
 const UserManagementPage= () => {
+    useEffect(() => {
+        document.title = "مدیریت کاربران"
+    },[]);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>

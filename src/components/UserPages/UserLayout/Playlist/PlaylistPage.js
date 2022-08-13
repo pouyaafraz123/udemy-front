@@ -52,7 +52,7 @@ const items = [
 const PlaylistPage = () => {
     useEffect(() => {
         document.title = "لیست پخش ها"
-    },[])
+    },[]);
     const [isList, setIsList] = useState(false);
     return (
         <Container>
