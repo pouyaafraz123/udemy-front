@@ -3,12 +3,16 @@ import Form from "../components/UserPages/Form/Form";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import styled from "styled-components";
+import {useEffect} from "@types/react";
 
 const Login = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+    useEffect(() => {
+        document.title = "ورود به سیستم"
+    },[]);
     return (
         <Form
             title={"ورود به سیستم"}

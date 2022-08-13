@@ -3,12 +3,16 @@ import Form from "../components/UserPages/Form/Form";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import styled from "styled-components";
+import {useEffect} from "@types/react";
 
 const Register = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+    useEffect(() => {
+        document.title = "ثبت نام"
+    },[]);
     return (
         <Form
             title={"ثبت نام در سیستم"}
