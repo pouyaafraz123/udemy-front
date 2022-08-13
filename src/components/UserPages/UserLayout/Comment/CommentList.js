@@ -1,38 +1,40 @@
 import styled from "styled-components";
-import v7 from "../../../../assets/images/v7.svg";
-import v8 from "../../../../assets/images/v8.svg";
+import v9 from "../../../../assets/images/v9.svg";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
-const ListContent = ({uni, index}) => {
+const CommentList = ({comment}) => {
     return (
         <Content>
             <Top>
                 <Right>
-                    <Number>{index + 1}</Number>
+                    {
+                        comment.img ? <Image src={comment.img} alt={comment.author}/> : <AccountBoxIcon
+                            sx={{color: "#bcbcbc", fontSize: "50px", marginRight: "-5px"}}/>
+                    }
                     <Titles>
-                        <Title>{uni.name}</Title>
+                        <Title>{comment.author}</Title>
+                        <Text>{comment.date}</Text>
                     </Titles>
                 </Right>
                 <Details>
                     <Detail>
-                        <Icon src={v7} alt={"count"}/>
                         <SmallText>
-                            {"تعداد دانشکده: " + uni.count}
+                            {"نام محتوا: " + comment.content}
                         </SmallText>
                     </Detail>
                     <Detail>
-                        <Icon src={v8} alt={"channel"}/>
-                        <SmallText>{"تعداد کانال ها: " + uni.channel}</SmallText>
+                        <Icon src={v9} alt={"rating"}/>
+                        <SmallText>{"امتیاز: " + comment.rating}</SmallText>
                     </Detail>
                 </Details>
                 <Buttons>
-                    <Button className={"green-btn"}>مشاهده</Button>
-                    <Button className={"purple-btn"}>ویرایش</Button>
+                    <Button className={"purple-btn"}>غیرفعال کردن</Button>
                     <Button className={"red-btn"}>حذف</Button>
                 </Buttons>
             </Top>
             <Bottom>
                 <Paragraph>
-                    {uni.text}
+                    {comment.text}
                 </Paragraph>
             </Bottom>
         </Content>
@@ -89,6 +91,32 @@ const Bottom = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+`;
+const Image = styled.img`
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  color: #29509d;
+  background: #F3f4f6;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  @media only screen and (max-width: 610px) {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+`;
+const Text = styled.div`
+  color: #bcbcbc;
+  font-size: 12px;
+  width: 160px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 const Paragraph = styled.p`
   color: #bcbcbc;
@@ -223,4 +251,4 @@ const Button = styled.button`
   transition: all .3s;
 `;
 
-export default ListContent;
+export default CommentList;
