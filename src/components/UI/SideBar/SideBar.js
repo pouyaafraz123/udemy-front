@@ -14,7 +14,7 @@ const SideBar = (props) => {
                 <div className={attachedClasses.join(" ")}>
                     <div className="Close-Icon" onClick={props.clicked}><CloseIcon /></div>
                     <h3 className="logo-brand text-center pt-2">یادینا</h3>
-                    <SideBarItems clicked={props.clicked}/>
+                    <SideBarItems activeItem={props.activeItem} clicked={props.clicked}/>
                 </div>
             </SideBarDiv>
         </>

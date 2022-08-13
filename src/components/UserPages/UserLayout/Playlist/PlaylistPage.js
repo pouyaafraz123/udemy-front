@@ -8,7 +8,7 @@ import i4 from "../../../../assets/images/i4.jpg";
 import GridContent from "../../Common/GridContent";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import {useState} from "react";
+import {useState , useEffect} from "react";
 import ListContent from "../../Common/ListContent";
 
 const items = [
@@ -50,6 +50,9 @@ const items = [
     },
 ];
 const PlaylistPage = () => {
+    useEffect(() => {
+        document.title = "لیست پخش ها"
+    },[])
     const [isList, setIsList] = useState(false);
     return (
         <Container>
