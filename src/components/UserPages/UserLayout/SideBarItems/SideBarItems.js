@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -10,30 +10,103 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const items = [
-    {url: "/admin/dashboard", title: "داشبورد", icon: <DashboardIcon/>},
-    {url: "/admin/profile", title: "پروفایل من", icon: <ManageAccountsIcon/>},
-    {url: "/admin/playlist", title: "لیست پخش ها", icon: <PlaylistPlayIcon/>},
-    {url: "/admin/channel", title: "لیست کانال ها", icon: <YouTubeIcon/>},
-    {url: "/admin/userManagement", title: "مدیریت کاربران", icon: <PeopleIcon/>},
-    {url: "/admin/role", title: "مدیریت نقش ها", icon: <PeopleIcon/>},
-    {url: "/admin/universityManagement", title: "مدیریت دانشگاه ها", icon: <AccountBalanceIcon/>},
-    {url: "/admin/comment", title: "مدیریت نظرات", icon: <ChatBubbleIcon/>},
-    {url: "/login", title: "خروج", icon: <LogoutIcon/>},
-]
+class SideBarItems extends Component {
+    state = {
+        items: [
+            {
+                url: "/admin/dashboard",
+                title: "داشبورد",
+                icon: <DashboardIcon/>,
+                status: this.props.activeItem === "dashboard" ? "active" : "",
+                id: 1
+            },
+            {
+                url: "/admin/profile",
+                title: "پروفایل من",
+                icon: <ManageAccountsIcon/>,
+                status: this.props.activeItem === "profile" ? "active" : "",
+                id: 2
+            },
+            {
+                url: "/admin/playlist",
+                title: "لیست پخش ها",
+                icon: <PlaylistPlayIcon/>,
+                status: this.props.activeItem === "playlist" ? "active" : "",
+                id: 3
+            },
+            {
+                url: "/admin/channel",
+                title: "لیست کانال ها",
+                icon: <YouTubeIcon/>,
+                status: this.props.activeItem === "channel" ? "active" : "",
+                id: 4
+            },
+            {
+                url: "/admin/user",
+                title: "مدیریت کاربران",
+                icon: <PeopleIcon/>,
+                status: this.props.activeItem === "user" ? "active" : "",
+                id: 5
+            },
+            {
+                url: "/admin/role",
+                title: "مدیریت نقش ها",
+                icon: <PeopleIcon/>,
+                status: this.props.activeItem === "role" ? "active" : "",
+                id: 6
+            },
+            {
+                url: "/admin/university",
+                title: "مدیریت دانشگاه ها",
+                icon: <AccountBalanceIcon/>,
+                status: this.props.activeItem === "university" ? "active" : "",
+                id: 7
+            },
+            {
+                url: "/admin/comment",
+                title: "مدیریت نظرات",
+                icon: <ChatBubbleIcon/>,
+                status: this.props.activeItem === "comment" ? "active" : "",
+                id: 8
+            },
+            {url: "/login", title: "خروج", icon: <LogoutIcon/>},
+        ]
+    }
 
-const SideBarItems = (props) => {
-    return (
-        items.map((item) => {
-            return (
-                <ItemsDiv key={item.title} onClick={props.clicked}>
-                    <Link to={item.url}>
-                        {item.icon} {item.title}
-                    </Link>
-                </ItemsDiv>
-            );
+    changeStatus(id) {
+        const currentItemIndex = this.state.items.findIndex((p) => {
+            return p.id === id
+        });
+        const currentItem = this.state.items[currentItemIndex];
+        const menuItems = this.state.items;
+        currentItem.status = "active";
+        menuItems[currentItemIndex] = currentItem;
+
+        menuItems.forEach(item => {
+            if (item.id !== id) {
+                item.status = "";
+            }
         })
-    );
+        this.setState({items: menuItems});
+    }
+
+    render() {
+        return (
+            <>
+                {
+                    this.state.items.map((item) => {
+                        return (
+                            <ItemsDiv key={item.title} onClick={this.props.clicked}>
+                                <Link to={item.url} className={item.status} onClick={() => this.changeStatus(item.id)}>
+                                    {item.icon} {item.title}
+                                </Link>
+                            </ItemsDiv>
+                        );
+                    })
+                }
+            </>
+        );
+    }
 }
 
 const ItemsDiv = styled.div`
@@ -41,10 +114,20 @@ const ItemsDiv = styled.div`
   margin-right: 30px;
 
   a {
-    color: white;
+    color: rgba(256, 256, 256, 0.7);
     text-decoration: none;
+    transition: all ease 0.3s;
   }
-  
+
+  a:hover:not(a.active) {
+    padding-right: 10px;
+    color: rgba(256, 256, 256, 1);
+  }
+
+  a.active {
+    color: rgba(256, 256, 256, 1);
+  }
+
   svg {
     font-size: 28px;
   }

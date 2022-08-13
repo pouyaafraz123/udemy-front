@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import DashboardCard from "./DashboardCard/DashboardCard";
 import styled from "styled-components";
 
 const DashBoard = (props) => {
+    useEffect(() => {
+        document.title = "داشبورد"
+    },[])
     return(
         <>
             <DashboardContainer className="pl-4">
