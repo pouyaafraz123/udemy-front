@@ -3,7 +3,7 @@ import Form from "../components/UserPages/Form/Form";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import styled from "styled-components";
-import {useEffect} from "@types/react";
+import {useEffect} from "react";
 
 const Register = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);

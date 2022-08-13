@@ -22,7 +22,7 @@ const PagesRoutes = () => {
                 <Route path="login" element={<Login/>}/>
                 <Route path="admin" element={<UserLayout inside={""}/>}/>
                 <Route path="admin/dashboard" element={<UserLayout activeItem={"dashboard"} inside={<DashBoard/>}/>}/>
-                <Route path="admin/profile" element={<UserLayout activeItem={"profile"} inside={<Profile />}/>}/>
+                <Route path="admin/profile" element={<UserLayout activeItem={"profile"} inside={<Profile/>}/>}/>
                 <Route path="admin/playlist" element={<UserLayout activeItem={"playlist"} inside={<PlaylistPage/>}/>}/>
                 <Route path="admin/channel" element={<UserLayout activeItem={"channel"} inside={<ChannelPage/>}/>}/>
                 <Route
@@ -34,8 +34,15 @@ const PagesRoutes = () => {
                         />
                     }
                 />
-                <Route path="admin/roleManagement"
-                       element={<UserLayout activeItem={"roleManagement"} inside={<RoleManagement/>}/>}/>
+                <Route
+                    path="admin/roleManagement"
+                    element={
+                        <UserLayout
+                            activeItem={"roleManagement"}
+                            inside={<RoleManagement/>}
+                        />
+                    }
+                />
                 <Route
                     path="admin/universityManagement"
                     element={
