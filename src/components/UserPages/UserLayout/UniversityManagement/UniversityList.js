@@ -1,43 +1,40 @@
 import styled from "styled-components";
-import v1 from "../../../assets/images/v1.svg";
-import v2 from "../../../assets/images/v2.svg";
-import v3 from "../../../assets/images/v3.svg";
+import v7 from "../../../../assets/images/v7.svg";
+import v8 from "../../../../assets/images/v8.svg";
 
-
-const ListContent = ({item,index,channel}) => {
+const ListContent = ({uni,index}) => {
     return (
         <Content>
-            <Right>
-                <Number>{index+1}</Number>
-                <Titles>
-                    <Title>{item.title}</Title>
-                    <Text>{item.university}</Text>
-                </Titles>
-            </Right>
-            <Details>
-                <Detail>
-                    <Icon src={v1} alt={"content"}/>
-                    <SmallText>
-                        {channel?("تعداد لیست پخش: "+item.playlist):("تعداد محتوا: "+item.content)}
-                    </SmallText>
-                </Detail>
-                <Detail>
-                    <Icon src={v2} alt={"comment"}/>
-                    <SmallText>
-                        تعداد نظر:
-                        {item.comment}
-                    </SmallText>
-                </Detail>
-                <Detail>
-                    <Icon src={v3} alt={"status"}/>
-                    <SmallText>وضعیت: در حال بروزرسانی</SmallText>
-                </Detail>
-            </Details>
-            <Buttons>
-                <Button className={"green-btn"}>مشاهده</Button>
-                <Button className={"purple-btn"}>ویرایش</Button>
-                <Button className={"red-btn"}>حذف</Button>
-            </Buttons>
+            <Top>
+                <Right>
+                    <Number>{index+1}</Number>
+                    <Titles>
+                        <Title>{uni.name}</Title>
+                    </Titles>
+                </Right>
+                <Details>
+                    <Detail>
+                        <Icon src={v7} alt={"count"}/>
+                        <SmallText>
+                            {"تعداد دانشکده: "+uni.count}
+                        </SmallText>
+                    </Detail>
+                    <Detail>
+                        <Icon src={v8} alt={"channel"}/>
+                        <SmallText>{"تعداد کانال ها: "+uni.channel}</SmallText>
+                    </Detail>
+                </Details>
+                <Buttons>
+                    <Button className={"green-btn"}>مشاهده</Button>
+                    <Button className={"purple-btn"}>ویرایش</Button>
+                    <Button className={"red-btn"}>حذف</Button>
+                </Buttons>
+            </Top>
+            <Bottom>
+                <Paragraph>
+                    {uni.text}
+                </Paragraph>
+            </Bottom>
         </Content>
     );
 }
@@ -46,8 +43,9 @@ const Content = styled.div`
   border: 1px solid rgba(222,222,222);
   border-radius: 10px;
     display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: white;
   padding: 20px 36px;
   gap: 16px;
@@ -71,12 +69,47 @@ const Content = styled.div`
     flex-direction: column;
   }
 `;
+const Top = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  @media only screen and (max-width: 690px){
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+`;
+const Bottom = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Paragraph = styled.p`
+    color: #bcbcbc;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  
+  &::before{
+    content: "\\275E";
+    font-size: 1.2rem;
+    color: #7ac3f0;
+    padding: 4px;
+  }
+  &::after {
+    content: "\\275D";
+    font-size: 1.2rem;
+    color: #7ac3f0;
+    padding: 4px;
+  }
+`;
 const Right = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 16px;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 690px){
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -94,7 +127,7 @@ const Number = styled.div`
   align-items: center;
   font-size: 18px;
   font-family: sans-serif;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 690px){
     width: 60px;
     height: 60px;
     font-size: 30px;
@@ -125,11 +158,13 @@ const Text = styled.div`
 `;
 const Details = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
+  padding-right: 5%;
+  gap: 30%;
   align-items: center;
   width: 70%;
   flex-wrap: wrap;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 690px){
     flex-direction: column;
     gap: 10px;
   }
@@ -151,6 +186,9 @@ const Buttons = styled.div`
   justify-content: center;
   align-items: center;
   gap: 5px;
+  @media only screen and (max-width: 690px){
+    margin-top: 25px;
+  }
   .green-btn{
     background: #34d399;
     &:hover{

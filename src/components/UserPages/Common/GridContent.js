@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import c1 from "../../../assets/images/c1.svg";
 import c2 from "../../../assets/images/c2.svg";
+import c1 from "../../../assets/images/c1.svg";
 import c3 from "../../../assets/images/c3.svg";
+import c4 from "../../../assets/images/c4.svg";
 
 const GridContent = (props) => {
     return (
@@ -15,21 +16,21 @@ const GridContent = (props) => {
                <Text>{props.item.text}</Text>
                <Details>
                    <Detail>
-                       <Icon src={c1} alt={"comment"}/>
-                       <SmallText>{props.item.comment} نظر </SmallText>
+                       <Icon src={props.channel?c4:c1} alt={props.channel?"playlist":"comment"}/>
+                       <SmallText>{!props.channel?(props.item.comment+" نظر"):"تعداد لیست پخش: "+props.item.playlist}</SmallText>
                    </Detail>
                    <Detail>
                        <Icon src={c2} alt={"author"}/>
                        <SmallText>{props.item.author}</SmallText>
                    </Detail>
-                   <Detail>
+                   {!props.channel?<Detail>
                        <Icon src={c3} alt={"comment"}/>
                        <SmallText>{props.item.content} محتوا</SmallText>
-                   </Detail>
+                   </Detail>:""}
                </Details>
                <ButtonPlace>
                    <Button>
-                       مشاهده محتوا
+                       {props.channel?"مشاهده اطلاعات کانال":"مشاهده محتوا"}
                    </Button>
                </ButtonPlace>
            </Container>

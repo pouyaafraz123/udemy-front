@@ -2,9 +2,14 @@ import styled from "styled-components";
 import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import i1 from "../../../../assets/images/i1.jpg";
-import i2 from "../../../../assets/images/i2.jpg";
-import i3 from "../../../../assets/images/i3.jpg";
-import i4 from "../../../../assets/images/i4.jpg";
+import i5 from "../../../../assets/images/i5.jpg";
+import i6 from "../../../../assets/images/i6.jpg";
+import i7 from "../../../../assets/images/i7.jpg";
+import i8 from "../../../../assets/images/i8.jpg";
+import i9 from "../../../../assets/images/i9.jpg";
+import i10 from "../../../../assets/images/i10.jpg";
+import i11 from "../../../../assets/images/i11.jpg";
+
 import GridContent from "../../Common/GridContent";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -13,43 +18,71 @@ import ListContent from "../../Common/ListContent";
 
 const items = [
     {
-        img: i1,
-        title: "حلقه ها",
-        text: "کانال برنامه نویسی شی گرا",
-        comment: 0,
-        content: 0,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
+        img:i1,
+        title:"برنامه نویسی شئ گرا",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:1,
+        author:"جعفر تنها",
+        comment:0
     },
     {
-        img: i2,
-        title: "JavaFx",
-        text: "کانال متخصص جاوا",
-        comment: 2,
-        content: 3,
-        author: "مسعود توکلی",
-        university: "دانشگاه تبریز"
+        img:i5,
+        title:"متخصص جاوا",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:1,
+        author:"مسعود توکلی",
+        comment:4
     },
     {
-        img: i3,
-        title: "کاربرد تجربه کاربری در طراحی رابط کاربری",
-        text: "کانال متخصص UI (طراحی رابط کاربری)",
-        comment: 4,
-        content: 10,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
+        img:i6,
+        title:"متخصص UI طراحی رابط کاربری",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:2,
+        author:"جعفر تنها",
+        comment:8
     },
     {
-        img: i4,
-        title: "مبانی و اصول اولیه در طراحی UI",
-        text: "کانال متخصص UI (طراحی رابط کاربری)",
-        comment: 0,
-        content: 0,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
+        img:i7,
+        title:"آشنایی با امکانات جدید لاراول 8",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:0,
+        author:"جعفر تنها",
+        comment:0
+    },
+    {
+        img:i8,
+        title:"آموزش المنتور",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:0,
+        author:"جعفر تنها",
+        comment:0
+    },
+    {
+        img:i9,
+        title:"آموزش پیشرفته پایتون",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:0,
+        author:"مسعود توکلی",
+        comment:0
+    },
+    {
+        img:i10,
+        title:"آموزش جاوا اسکریپت ES6",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:0,
+        author:"مسعود توکلی",
+        comment:0
+    },
+    {
+        img:i11,
+        title:"آموزش tailwindcss",
+        university:"مهندسی کامپیوتر تبریز",
+        playlist:0,
+        author:"مسعود توکلی",
+        comment:0
     },
 ];
-const PlaylistPage = () => {
+const ChannelPage = () => {
     const [isList, setIsList] = useState(false);
     return (
         <Container>
@@ -57,14 +90,15 @@ const PlaylistPage = () => {
             <SearchBox
                 isList={isList}
                 setIsList={setIsList}
-                title={"لیست پخش ها"}
-                btnText={"افزودن لیست پخش جدید"}
-                placeHolder={"جستجو بر اساس نام لیست پخش ..."}
+                title={"لیست کانال ها"}
+                btnText={"افزودن کانال جدید"}
+                placeHolder={"جستجو بر اساس نام کانال ..."}
             />
             <Bottom>
                 <ButtonGroup>
-                    <Button className={"selected"}>همه ی لیست ها</Button>
-                    <Button>لیست های من</Button>
+                    <Button className={"selected"}>همه کانال ها</Button>
+                    <Button>کانال های من</Button>
+                    <Button>کانال های عضو شده</Button>
                 </ButtonGroup>
                 {renderItems(items, isList)}
             </Bottom>
@@ -86,7 +120,7 @@ const renderItems = (items, isList) => {
 const renderList = (items) => {
     return items.map((item, index) => {
         return (
-            <ListContent item={item} index={index} key={index}/>
+            <ListContent item={item} index={index} key={index} channel/>
         );
     });
 }
@@ -94,7 +128,7 @@ const renderList = (items) => {
 const renderGrids = (items) => {
     return items.map((item, index) => {
         return (
-            <GridContent item={item} key={index}/>
+            <GridContent item={item} channel key={index}/>
         );
     });
 }
@@ -170,4 +204,4 @@ const Box = styled.button`
   border-radius: 5px;
 `;
 
-export default PlaylistPage;
+export default ChannelPage;

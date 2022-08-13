@@ -15,9 +15,9 @@ const items = [
     {url: "/admin/profile", title: "پروفایل من", icon: <ManageAccountsIcon/>},
     {url: "/admin/playlist", title: "لیست پخش ها", icon: <PlaylistPlayIcon/>},
     {url: "/admin/channel", title: "لیست کانال ها", icon: <YouTubeIcon/>},
-    {url: "/admin/user", title: "مدیریت کاربران", icon: <PeopleIcon/>},
+    {url: "/admin/userManagement", title: "مدیریت کاربران", icon: <PeopleIcon/>},
     {url: "/admin/role", title: "مدیریت نقش ها", icon: <PeopleIcon/>},
-    {url: "/admin/university", title: "مدیریت دانشگاه ها", icon: <AccountBalanceIcon/>},
+    {url: "/admin/universityManagement", title: "مدیریت دانشگاه ها", icon: <AccountBalanceIcon/>},
     {url: "/admin/comment", title: "مدیریت نظرات", icon: <ChatBubbleIcon/>},
     {url: "/login", title: "خروج", icon: <LogoutIcon/>},
 ]
