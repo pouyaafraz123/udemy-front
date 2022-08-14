@@ -5,38 +5,51 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import VideoFileIcon from '@mui/icons-material/VideoFile';
 import PaymentIcon from '@mui/icons-material/Payment';
 import InfoIcon from "../../../../../assets/images/i.svg";
-
-const cards = [
-    {
-        title: "تعداد کانال ها",
-        content: "0+",
-        footer: "تعداد کانال هایی که من ساختم",
-        icon: <SubscriptionsIcon sx={{fontSize: '28px'}} className="text-white"/>
-    },
-    {
-        title: "تعداد لیست پخش ها",
-        content: "0+",
-        footer: "تعداد لیست پخش هایی که من ساختم",
-        icon: <VideoLibraryOutlinedIcon sx={{fontSize: '28px'}} className="text-white"/>
-    },
-    {
-        title: "تعداد محتوا ها",
-        content: "0+",
-        footer: "تعداد کل محتواهایی که تاکنون ساختم",
-        icon: <VideoFileIcon sx={{fontSize: '28px'}} className="text-white"/>
-    },
-    {
-        title: "اعتبار حساب من",
-        content: <>
-            0
-            <span className="pr-3">تومان</span>
-        </>,
-        footer: "اعتبار من در سیستم",
-        icon: <PaymentIcon sx={{fontSize: '28px'}} className="text-white"/>
-    },
-]
+import {getDataWithToken} from "../../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../../features/AuthSlice";
 
 const DashboardCard = (props) => {
+    const token = useSelector(authState).user.token;
+    const getDashboardData = async () => {
+        const {data} = await getDataWithToken("", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["dashboard"], getDashboardData);
+    console.log(data);
+
+    const cards = [
+        {
+            title: "تعداد کانال ها",
+            content: data.channel_count + "+",
+            footer: "تعداد کانال هایی که من ساختم",
+            icon: <SubscriptionsIcon sx={{fontSize: '28px'}} className="text-white"/>
+        },
+        {
+            title: "تعداد لیست پخش ها",
+            content: data.playlist_count + "+",
+            footer: "تعداد لیست پخش هایی که من ساختم",
+            icon: <VideoLibraryOutlinedIcon sx={{fontSize: '28px'}} className="text-white"/>
+        },
+        {
+            title: "تعداد محتوا ها",
+            content: data.video_counts + "+",
+            footer: "تعداد کل محتواهایی که تاکنون ساختم",
+            icon: <VideoFileIcon sx={{fontSize: '28px'}} className="text-white"/>
+        },
+        {
+            title: "اعتبار حساب من",
+            content: <>
+                {data.bought_playlist}
+                <span className="pr-3">تومان</span>
+            </>,
+            footer: "اعتبار من در سیستم",
+            icon: <PaymentIcon sx={{fontSize: '28px'}} className="text-white"/>
+        },
+    ]
+
     return (
         cards.map(card => {
             return (
@@ -50,7 +63,7 @@ const DashboardCard = (props) => {
                         <h6 className="text-muted">{card.title}</h6>
                         <h3 className="text-muted" style={{fontFamily: 'sans-serif'}}>{card.content}</h3>
                         <hr className="mt-n1 mr-n1"/>
-                        <div className="d-flex align-items-center" >
+                        <div className="d-flex align-items-center">
                             <img src={InfoIcon} alt="InfoIcon" className="img-fluid mt-n1"/>
                             <small className="text-muted pr-2">{card.footer}</small>
                         </div>
@@ -61,8 +74,10 @@ const DashboardCard = (props) => {
     );
 }
 
+
 const CardDiv = styled.div`
   border-radius: 8px !important;
+
   .Card-Icon-Box {
     background: white;
     display: flex;
@@ -74,6 +89,7 @@ const CardDiv = styled.div`
     height: 70px;
     transform: translateX(50%);
   }
+
   .Card-Icon {
     display: flex;
     justify-content: center;
@@ -88,8 +104,8 @@ const CardDiv = styled.div`
   .Card-Icon:hover {
     background-color: #eb5254;
   }
-  
-  h6{
+
+  h6 {
     font-size: 14px;
   }
 
@@ -103,7 +119,7 @@ const CardDiv = styled.div`
 
   small {
     font-size: 12px !important;
-    color: rgba(160,165,174,1) !important;
+    color: rgba(160, 165, 174, 1) !important;
   }
 `;
 

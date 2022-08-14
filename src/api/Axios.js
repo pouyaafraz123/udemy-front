@@ -8,6 +8,15 @@ export const getData = async (url) => {
     return response.data;
 }
 
+export const getDataWithToken = async (url, token) => {
+    const response = await axios.get(BASEURL + url, {
+        headers: {
+            authorization: "Bearer " + token
+        }
+    });
+    return response.data;
+}
+
 export const sendData = async (url, data) => {
     return await axios.post(BASEURL + url, data);
 }

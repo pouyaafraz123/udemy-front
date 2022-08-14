@@ -65,7 +65,7 @@ const Login = (props) => {
                 </div>
                 <button type={"submit"} onClick={(e) => {
                     e.preventDefault();
-                    checkLogin(email, password, dispatch, navigate)
+                    checkLogin(email, password, dispatch, navigate);
                 }}
                         className="btn registerBTN align-self-start px-4 mt-3">ورود به سیستم
                 </button>
