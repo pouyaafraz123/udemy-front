@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const FileChooser = (props) => {
     const [yourImage, setImage] = useState([]);
+    // setImage(props.avatar)
     const {getRootProps, getInputProps, isDragActive, open} = useDropzone({
         accept: {
             'image': ['image/*']
@@ -17,15 +18,16 @@ const FileChooser = (props) => {
             )
         }
     })
-    if (yourImage.length === 0) {
-        yourImage.push({preview: require('../../../../../assets/images/User.png')})
-    }
+
+    yourImage.push({preview: props.avatar})
+    console.log(props.avatar)
+
     return (
         <div>
             <AvatarDiv {...getRootProps()} onClick={open}>
                 <div className="Image-Box">
                     {
-                        yourImage.map((upFile,index) => {
+                        yourImage.map((upFile, index) => {
                             return (
                                 <div key={index}>
                                     <img src={upFile.preview}
@@ -33,7 +35,7 @@ const FileChooser = (props) => {
                                          alt="preview"/>
                                 </div>
                             );
-                        })
+                        }).pop()
                     }
                 </div>
                 <input {...getInputProps()}/>

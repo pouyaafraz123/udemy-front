@@ -5,32 +5,46 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import VideoFileIcon from '@mui/icons-material/VideoFile';
 import PaymentIcon from '@mui/icons-material/Payment';
 import InfoIcon from "../../../../../assets/images/i.svg";
+import {getDataWithToken} from "../../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../../features/AuthSlice";
 
 const DashboardCard = (props) => {
-
+    const token = useSelector(authState).user.token;
+    const getDashboardData = async () => {
+        const {data} = await getDataWithToken("", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["dashboard"], getDashboardData);
+    if (isLoading) {
+        return ""
+    }
+    console.log(data);
     const cards = [
         {
             title: "تعداد کانال ها",
-            content: 0 + "+",
+            content: data.channel_count + "+",
             footer: "تعداد کانال هایی که من ساختم",
             icon: <SubscriptionsIcon sx={{fontSize: '28px'}} className="text-white"/>
         },
         {
             title: "تعداد لیست پخش ها",
-            content: 0 + "+",
+            content: data.playlist_count + "+",
             footer: "تعداد لیست پخش هایی که من ساختم",
             icon: <VideoLibraryOutlinedIcon sx={{fontSize: '28px'}} className="text-white"/>
         },
         {
             title: "تعداد محتوا ها",
-            content: 0 + "+",
+            content: data.video_counts + "+",
             footer: "تعداد کل محتواهایی که تاکنون ساختم",
             icon: <VideoFileIcon sx={{fontSize: '28px'}} className="text-white"/>
         },
         {
             title: "اعتبار حساب من",
             content: <>
-                0
+                {data.bought_playlist}
                 <span className="pr-3">تومان</span>
             </>,
             footer: "اعتبار من در سیستم",
