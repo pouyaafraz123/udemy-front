@@ -8,23 +8,24 @@ const CommentList = ({comment}) => {
             <Top>
                 <Right>
                     {
-                        comment.img ? <Image src={comment.img} alt={comment.author}/> : <AccountBoxIcon
-                            sx={{color: "#bcbcbc", fontSize: "50px", marginRight: "-5px"}}/>
+                        comment.user_avatar ? <Image src={comment.user_avatar} alt={comment.user_name}/> :
+                            <AccountBoxIcon
+                                sx={{color: "#bcbcbc", fontSize: "50px", marginRight: "-5px"}}/>
                     }
                     <Titles>
-                        <Title>{comment.author}</Title>
-                        <Text>{comment.date}</Text>
+                        <Title>{comment.user_name}</Title>
+                        <Text>{comment.created_at}</Text>
                     </Titles>
                 </Right>
                 <Details>
                     <Detail>
                         <SmallText>
-                            {"نام محتوا: " + comment.content}
+                            {"نام محتوا: " + comment.channel_name + " / " + comment.playlist_title + " / " + comment.media_name}
                         </SmallText>
                     </Detail>
                     <Detail>
                         <Icon src={v9} alt={"rating"}/>
-                        <SmallText>{"امتیاز: " + comment.rating}</SmallText>
+                        <SmallText>{"امتیاز: " + comment.score}</SmallText>
                     </Detail>
                 </Details>
                 <Buttons>
@@ -34,7 +35,7 @@ const CommentList = ({comment}) => {
             </Top>
             <Bottom>
                 <Paragraph>
-                    {comment.text}
+                    {comment.comment}
                 </Paragraph>
             </Bottom>
         </Content>
@@ -192,13 +193,13 @@ const Details = styled.div`
   gap: 30%;
   align-items: center;
   width: 70%;
-  flex-wrap: wrap;
   @media only screen and (max-width: 690px) {
     flex-direction: column;
     gap: 10px;
   }
 `;
 const Detail = styled.div`
+  width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;

@@ -1,59 +1,31 @@
 import styled from "styled-components";
 import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
-import i1 from "../../../../assets/images/i1.jpg";
-import i2 from "../../../../assets/images/i2.jpg";
-import i3 from "../../../../assets/images/i3.jpg";
-import i4 from "../../../../assets/images/i4.jpg";
 import GridContent from "../../Common/GridContent";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import {useState , useEffect} from "react";
+import {useEffect, useState} from "react";
 import ListContent from "../../Common/ListContent";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
-const items = [
-    {
-        img: i1,
-        title: "حلقه ها",
-        text: "کانال برنامه نویسی شی گرا",
-        comment: 0,
-        content: 0,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
-    },
-    {
-        img: i2,
-        title: "JavaFx",
-        text: "کانال متخصص جاوا",
-        comment: 2,
-        content: 3,
-        author: "مسعود توکلی",
-        university: "دانشگاه تبریز"
-    },
-    {
-        img: i3,
-        title: "کاربرد تجربه کاربری در طراحی رابط کاربری",
-        text: "کانال متخصص UI (طراحی رابط کاربری)",
-        comment: 4,
-        content: 10,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
-    },
-    {
-        img: i4,
-        title: "مبانی و اصول اولیه در طراحی UI",
-        text: "کانال متخصص UI (طراحی رابط کاربری)",
-        comment: 0,
-        content: 0,
-        author: "جعفر تنها",
-        university: "دانشگاه تبریز"
-    },
-];
+
 const PlaylistPage = () => {
     useEffect(() => {
         document.title = "لیست پخش ها"
-    },[]);
+    }, []);
     const [isList, setIsList] = useState(false);
+    const token = useSelector(authState).user.token;
+    const getPlaylists = async () => {
+        const {data} = await getDataWithToken("/playlist?search=&list_type=&channel_id=&status=updating", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["playlist"], getPlaylists);
+    if (isLoading) return "";
+    console.log(data);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
@@ -69,7 +41,7 @@ const PlaylistPage = () => {
                     <Button className={"selected"}>همه ی لیست ها</Button>
                     <Button>لیست های من</Button>
                 </ButtonGroup>
-                {renderItems(items, isList)}
+                {renderItems(data.list, isList)}
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>

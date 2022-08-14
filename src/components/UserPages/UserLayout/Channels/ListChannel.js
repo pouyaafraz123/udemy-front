@@ -1,24 +1,24 @@
 import styled from "styled-components";
-import v1 from "../../../assets/images/v1.svg";
-import v2 from "../../../assets/images/v2.svg";
-import v3 from "../../../assets/images/v3.svg";
+import v1 from "../../../../assets/images/v1.svg";
+import v2 from "../../../../assets/images/v2.svg";
+import v3 from "../../../../assets/images/v3.svg";
 
 
-const ListContent = ({item,index,channel}) => {
+const ListContent = ({item, index}) => {
     return (
         <Content>
             <Right>
-                <Number>{index+1}</Number>
+                <Number>{index + 1}</Number>
                 <Titles>
-                    <Title>{item.title}</Title>
-                    <Text>دانشگاه تبریز</Text>
+                    <Title>{item.name}</Title>
+                    <Text>{item.category_name}</Text>
                 </Titles>
             </Right>
             <Details>
                 <Detail>
                     <Icon src={v1} alt={"content"}/>
                     <SmallText>
-                        {channel ? ("تعداد لیست پخش: " + item.playlist) : ("تعداد محتوا: " + item.media_count)}
+                        {("تعداد لیست پخش: " + item.playlist_count)}
                     </SmallText>
                 </Detail>
                 <Detail>
@@ -43,9 +43,9 @@ const ListContent = ({item,index,channel}) => {
 }
 
 const Content = styled.div`
-  border: 1px solid rgba(222,222,222);
+  border: 1px solid rgba(222, 222, 222);
   border-radius: 10px;
-    display: flex;
+  display: flex;
   justify-content: start;
   align-items: center;
   background: white;
@@ -53,21 +53,25 @@ const Content = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   transition: all .3s ease-in-out;
-  &:hover{
+
+  &:hover {
     transform: scale(1.04);
   }
-  @media only screen and (max-width: 750px){
-    &:hover{
+
+  @media only screen and (max-width: 750px) {
+    &:hover {
       transform: scale(1);
     }
   }
-  &:not(:last-child){
+
+  &:not(:last-child) {
     margin-bottom: 12px;
   }
-  @media only screen and (max-width: 690px){
+
+  @media only screen and (max-width: 690px) {
     justify-content: center;
   }
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 610px) {
     flex-direction: column;
   }
 `;
@@ -76,7 +80,7 @@ const Right = styled.div`
   justify-content: start;
   align-items: center;
   gap: 16px;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 610px) {
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -94,7 +98,7 @@ const Number = styled.div`
   align-items: center;
   font-size: 18px;
   font-family: sans-serif;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 610px) {
     width: 60px;
     height: 60px;
     font-size: 30px;
@@ -129,7 +133,7 @@ const Details = styled.div`
   align-items: center;
   width: 70%;
   flex-wrap: wrap;
-  @media only screen and (max-width: 610px){
+  @media only screen and (max-width: 610px) {
     flex-direction: column;
     gap: 10px;
   }
@@ -144,34 +148,40 @@ const Detail = styled.div`
 const Icon = styled.img`
 `;
 const SmallText = styled.div`
-    font-size: 12px;
+  font-size: 12px;
 `;
 const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  .green-btn{
+
+  .green-btn {
     background: #34d399;
-    &:hover{
+
+    &:hover {
       background: #059669;
     }
   }
-  .purple-btn{
+
+  .purple-btn {
     background: #a78bfa;
-    &:hover{
+
+    &:hover {
       background: #7c3aed;
     }
   }
-  .red-btn{
+
+  .red-btn {
     background: #ef4444;
-    &:hover{
+
+    &:hover {
       background: #dc2626;
     }
   }
 `;
 const Button = styled.button`
-    color: white;
+  color: white;
   font-size: 12px;
   outline: none;
   border: none;

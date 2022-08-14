@@ -9,19 +9,19 @@ const ListContent = ({uni,index}) => {
                 <Right>
                     <Number>{index+1}</Number>
                     <Titles>
-                        <Title>{uni.name}</Title>
+                        <Title>{"دانشگاه " + uni.name}</Title>
                     </Titles>
                 </Right>
                 <Details>
                     <Detail>
                         <Icon src={v7} alt={"count"}/>
                         <SmallText>
-                            {"تعداد دانشکده: "+uni.count}
+                            {"تعداد دانشکده: " + uni.children_count}
                         </SmallText>
                     </Detail>
                     <Detail>
                         <Icon src={v8} alt={"channel"}/>
-                        <SmallText>{"تعداد کانال ها: "+uni.channel}</SmallText>
+                        <SmallText>{"تعداد کانال ها: " + uni.channel_count}</SmallText>
                     </Detail>
                 </Details>
                 <Buttons>
@@ -32,7 +32,7 @@ const ListContent = ({uni,index}) => {
             </Top>
             <Bottom>
                 <Paragraph>
-                    {uni.text}
+                    {uni.content}
                 </Paragraph>
             </Bottom>
         </Content>

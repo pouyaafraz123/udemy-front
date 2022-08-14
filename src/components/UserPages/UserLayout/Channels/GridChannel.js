@@ -1,39 +1,33 @@
 import styled from "styled-components";
-import c2 from "../../../assets/images/c2.svg";
-import c1 from "../../../assets/images/c1.svg";
-import c3 from "../../../assets/images/c3.svg";
-import c4 from "../../../assets/images/c4.svg";
+import c2 from "../../../../assets/images/c2.svg";
+import c4 from "../../../../assets/images/c4.svg";
 
-const GridContent = ({item, channel}) => {
+const GridChannel = ({item}) => {
     return (
         <Content>
             <ImagePlace>
                 <Span className={"span"}>وضعیت لیست پخش در حال به روز رسانی</Span>
-                <Image className={"image"} src={item.poster.img} alt={item.poster.alt}/>
+                <Image className={"image"} src={item.poster} alt={item.name}/>
             </ImagePlace>
             <Container>
-                <Title>{item.title}</Title>
-                <Text>{item.channel_name}</Text>
+                <Title>{item.name}</Title>
+                <Text>{item.category_name}</Text>
                 <Details>
                     <Detail>
-                        <Icon src={channel ? c4 : c1} alt={channel ? "playlist" : "comment"}/>
-                        <SmallText>{!channel ? (item.comments_count + " نظر") : "تعداد لیست پخش: " + item.playlist}</SmallText>
+                        <Icon src={c4} alt={"playlist"}/>
+                        <SmallText>{"تعداد لیست پخش: " + item.playlist_count}</SmallText>
                     </Detail>
                     <Detail>
                         <Icon src={c2} alt={"author"}/>
-                        <SmallText>{item.user_name}</SmallText>
+                        <SmallText>{item.owner}</SmallText>
                     </Detail>
-                    {!channel ? <Detail>
-                        <Icon src={c3} alt={"comment"}/>
-                        <SmallText>{item.media_count} محتوا</SmallText>
-                    </Detail> : ""}
-               </Details>
-               <ButtonPlace>
-                   <Button>
-                       {channel ? "مشاهده اطلاعات کانال" : "مشاهده محتوا"}
-                   </Button>
-               </ButtonPlace>
-           </Container>
+                </Details>
+                <ButtonPlace>
+                    <Button>
+                        {"مشاهده اطلاعات کانال"}
+                    </Button>
+                </ButtonPlace>
+            </Container>
         </Content>
     );
 }
@@ -47,10 +41,12 @@ const Content = styled.div`
   background: white;
   border-radius: 15px;
   overflow: hidden;
-  &:hover .image{
+
+  &:hover .image {
     transform: scale(1.2);
   }
-  &:hover .span{
+
+  &:hover .span {
     visibility: visible;
     opacity: 1;
   }
@@ -70,7 +66,7 @@ const Span = styled.span`
   visibility: hidden;
 `;
 const Container = styled.div`
-    padding: 6px 16px;
+  padding: 6px 16px;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -94,7 +90,7 @@ const Image = styled.img`
 `;
 const Title = styled.h1`
   overflow: hidden;
- white-space: nowrap;
+  white-space: nowrap;
   text-overflow: ellipsis;
   width: 100%;
   color: #29509d;
@@ -113,21 +109,22 @@ const Details = styled.div`
   gap: 10px;
   width: 100%;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 20px;
 `;
 const Detail = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  width: 100%;
   align-items: center;
 `;
 const Icon = styled.img``;
 const SmallText = styled.div`
-    color: #7d7d7d;
+  color: #7d7d7d;
   font-size: 12px;
   padding: 0 6px;
 `;
 const ButtonPlace = styled.div`
-    width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,11 +141,12 @@ const Button = styled.button`
   outline: none;
   color: white;
   border-radius: 5px;
-  
+
   transition: all .3s;
-  &:hover{
+
+  &:hover {
     background: #7ac3f0;
   }
 `;
 
-export default GridContent;
+export default GridChannel;

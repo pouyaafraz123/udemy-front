@@ -3,74 +3,26 @@ import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import user3 from "../../../../assets/images/user3.jpg";
-import user4 from "../../../../assets/images/user4.jpeg";
-import user5 from "../../../../assets/images/user5.jpeg";
-import user6 from "../../../../assets/images/user6.jpeg";
-import user7 from "../../../../assets/images/user7.jpeg";
 import UserList from "./UserList";
 import {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
-const items = [
-    {
-        img:user3,
-        name:"جعفر تنها",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"--/--/----",
-        role:"SuperAdmin"
-    },
-    {
-        img:user4,
-        name:"جعفر تنها",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"--/--/----",
-        role:"SuperAdmin"
-    },
-    {
-        img:user5,
-        name:"جعفر تنها",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"--/--/----",
-        role:"SuperAdmin"
-    },
-    {
-        img:user6,
-        name:"جعفر تنها",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"--/--/----",
-        role:"SuperAdmin"
-    },
-    {
-        img:user7,
-        name:"جعفر تنها",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"--/--/----",
-        role:"دانشجو"
-    },
-    {
-        name:"PouyaAfraz",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"1400/04/10",
-        role:"دانشجو"
-    },
-    {
-        name:"Kamyab Tabani",
-        mail:"tanha@tabrizu.ac.ir",
-        phone:"09127983569",
-        birth:"1400/04/10",
-        role:"دانشجو"
-    },
-];
-const UserManagementPage= () => {
+const UserManagementPage = () => {
     useEffect(() => {
         document.title = "مدیریت کاربران"
-    },[]);
+    }, []);
+    const token = useSelector(authState).user.token;
+    const getUsers = async () => {
+        const {data} = await getDataWithToken("/admin/users?page=1&search=", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["users"], getUsers);
+    if (isLoading) return "";
+    console.log(data);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
@@ -81,7 +33,7 @@ const UserManagementPage= () => {
                 hidden
             />
             <Bottom>
-                {renderList(items)}
+                {renderList(data.list)}
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>

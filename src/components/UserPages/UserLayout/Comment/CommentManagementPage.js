@@ -3,72 +3,26 @@ import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import user3 from "../../../../assets/images/user3.jpg";
 import CommentList from "./CommentList";
 import {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
-const items = [
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-    {
-        img: user3,
-        author: "بهزاد رضازاده نوبر",
-        date: "1401/02/11 - 13:19:08",
-        content: "نام محتوا : متخصص جاوا / JavaFx / معرفی JavaFX",
-        rating: 5,
-        text: "تنلنلنلنت"
-    },
-];
 const CommentManagementPage = () => {
     useEffect(() => {
         document.title = "مدیریت نظرات"
-    },[]);
+    }, []);
+    const token = useSelector(authState).user.token;
+    const getComments = async () => {
+        const {data} = await getDataWithToken("/admin/comments?page=1&user_search=&active=1", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["comments"], getComments);
+    if (isLoading) return "";
+    console.log(data);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
@@ -83,7 +37,7 @@ const CommentManagementPage = () => {
                     <Button className={"selected"}>نظر های فعال</Button>
                     <Button>نظر های غیر فعال</Button>
                 </ButtonGroup>
-                {renderList(items)}
+                {renderList(data.list)}
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>

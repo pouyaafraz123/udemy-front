@@ -79,8 +79,8 @@ const checkLogin = async (email, password, dispatch, navigate) => {
         email: email,
         password: password
     }).then(response => {
-        if (response && response.data) {
-            dispatch(signIn(response.data));
+        if (response.data && response.data.data) {
+            dispatch(signIn(response.data.data));
             navigate("/admin/dashboard")
         }
         return response;

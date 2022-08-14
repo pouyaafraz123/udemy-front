@@ -5,15 +5,16 @@ import v6 from "../../../../assets/images/v6.svg";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const UserList = ({user}) => {
+
     return (
         <Content>
             <Right>
                 {
-                    user.img ? <Image src={user.img} alt={user.name}/> : <AccountBoxIcon
-                        sx={{color:"#bcbcbc",fontSize:"50px",marginRight:"-5px"}}/>
+                    user.avatar ? <Image src={user.avatar} alt={user.name}/> : <AccountBoxIcon
+                        sx={{color: "#bcbcbc", fontSize: "50px", marginRight: "-5px"}}/>
                 }
                 <Titles>
-                    <Title>{user.name}</Title>
+                    <Title>{user.name + " " + user.last_name}</Title>
                     <Text>{user.role}</Text>
                 </Titles>
             </Right>
@@ -21,22 +22,20 @@ const UserList = ({user}) => {
                 <Detail>
                     <Icon src={v4} alt={"email"}/>
                     <SmallText>
-                        {"ایمیل: "+user.mail}
+                        {"ایمیل: " + user.email}
                     </SmallText>
                 </Detail>
                 <Detail>
                     <Icon src={v5} alt={"phone"}/>
                     <SmallText>
-                        {"شماره موبایل: "+user.phone}
+                        {"شماره موبایل: " + user.mobile}
                     </SmallText>
                 </Detail>
                 <Detail>
                     <Icon src={v6} alt={"birth"}/>
                     <SmallText>
-                        {"تاریخ تولد: "+user.birth}
+                        {"تاریخ تولد: " + (user.birthday ? user.birthday : "--/--/----")}
                     </SmallText>
-                </Detail>
-                <Detail>
                 </Detail>
             </Details>
             <Buttons>
@@ -136,8 +135,10 @@ const Details = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
   width: 70%;
-  flex-wrap: wrap;
+
   @media only screen and (max-width: 610px) {
     flex-direction: column;
     gap: 10px;
@@ -145,7 +146,9 @@ const Details = styled.div`
 `;
 const Detail = styled.div`
   display: flex;
+  width: 100%;
   justify-content: start;
+  flex-wrap: nowrap;
   align-items: center;
   color: #7d7d7d;
   gap: 5px;

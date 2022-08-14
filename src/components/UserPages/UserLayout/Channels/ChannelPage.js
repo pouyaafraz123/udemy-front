@@ -1,93 +1,31 @@
 import styled from "styled-components";
 import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
-import i1 from "../../../../assets/images/i1.jpg";
-import i5 from "../../../../assets/images/i5.jpg";
-import i6 from "../../../../assets/images/i6.jpg";
-import i7 from "../../../../assets/images/i7.jpg";
-import i8 from "../../../../assets/images/i8.jpg";
-import i9 from "../../../../assets/images/i9.jpg";
-import i10 from "../../../../assets/images/i10.jpg";
-import i11 from "../../../../assets/images/i11.jpg";
-
-import GridContent from "../../Common/GridContent";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import {useState} from "react";
-import ListContent from "../../Common/ListContent";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
+import GridChannel from "./GridChannel";
+import ListChannel from "./ListChannel";
 
-const items = [
-    {
-        img:i1,
-        title:"برنامه نویسی شئ گرا",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:1,
-        author:"جعفر تنها",
-        comment:0
-    },
-    {
-        img:i5,
-        title:"متخصص جاوا",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:1,
-        author:"مسعود توکلی",
-        comment:4
-    },
-    {
-        img:i6,
-        title:"متخصص UI طراحی رابط کاربری",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:2,
-        author:"جعفر تنها",
-        comment:8
-    },
-    {
-        img:i7,
-        title:"آشنایی با امکانات جدید لاراول 8",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:0,
-        author:"جعفر تنها",
-        comment:0
-    },
-    {
-        img:i8,
-        title:"آموزش المنتور",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:0,
-        author:"جعفر تنها",
-        comment:0
-    },
-    {
-        img:i9,
-        title:"آموزش پیشرفته پایتون",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:0,
-        author:"مسعود توکلی",
-        comment:0
-    },
-    {
-        img:i10,
-        title:"آموزش جاوا اسکریپت ES6",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:0,
-        author:"مسعود توکلی",
-        comment:0
-    },
-    {
-        img:i11,
-        title:"آموزش tailwindcss",
-        university:"مهندسی کامپیوتر تبریز",
-        playlist:0,
-        author:"مسعود توکلی",
-        comment:0
-    },
-];
+
 const ChannelPage = () => {
     useEffect(() => {
         document.title = "کانال ها"
-    },[]);
+    }, []);
     const [isList, setIsList] = useState(false);
+    const token = useSelector(authState).user.token;
+    const getChannels = async () => {
+        const {data} = await getDataWithToken("/channel?list_type=&page=1&search=&status=", token);
+        console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["channels"], getChannels);
+    if (isLoading) return "";
+    console.log(data);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
@@ -104,7 +42,7 @@ const ChannelPage = () => {
                     <Button>کانال های من</Button>
                     <Button>کانال های عضو شده</Button>
                 </ButtonGroup>
-                {renderItems(items, isList)}
+                {renderItems(data.list, isList)}
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>
@@ -124,7 +62,7 @@ const renderItems = (items, isList) => {
 const renderList = (items) => {
     return items.map((item, index) => {
         return (
-            <ListContent item={item} index={index} key={index} channel/>
+            <ListChannel item={item} index={index} key={index} channel/>
         );
     });
 }
@@ -132,7 +70,7 @@ const renderList = (items) => {
 const renderGrids = (items) => {
     return items.map((item, index) => {
         return (
-            <GridContent item={item} channel key={index}/>
+            <GridChannel item={item} channel key={index}/>
         );
     });
 }
