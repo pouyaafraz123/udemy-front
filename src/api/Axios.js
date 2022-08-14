@@ -17,12 +17,21 @@ export const getDataWithToken = async (url, token) => {
     return response.data;
 }
 
+export const updateDataWithToken = async (url, data, token) => {
+    return await axios.put(BASEURL + url, data, {
+        headers: {
+            authorization: "Bearer " + token,
+            Accept: 'application/json'
+        }
+    });
+}
+
 export const sendData = async (url, data) => {
     return await axios.post(BASEURL + url, data);
 }
 
-export const updateData = async (url, id, todo) => {
-    return await axios.patch(BASEURL + url + "/" + id, todo);
+export const updateData = async (url, id, data) => {
+    return await axios.put(BASEURL + url + "/" + id, data);
 }
 
 export const deleteTodo = async (url, {id}) => {
