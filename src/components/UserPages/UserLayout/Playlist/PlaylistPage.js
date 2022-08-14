@@ -16,16 +16,16 @@ const PlaylistPage = () => {
     useEffect(() => {
         document.title = "لیست پخش ها"
     }, []);
+    const [myList, setMyList] = useState(false)
     const [isList, setIsList] = useState(false);
     const token = useSelector(authState).user.token;
     const getPlaylists = async () => {
         const {data} = await getDataWithToken("/playlist?search=&list_type=&channel_id=&status=updating", token);
-        console.log(data);
         return data;
     }
     const {data, error, isError, isLoading} = useQuery(["playlist"], getPlaylists);
     if (isLoading) return "";
-    console.log(data);
+
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
@@ -38,8 +38,8 @@ const PlaylistPage = () => {
             />
             <Bottom>
                 <ButtonGroup>
-                    <Button className={"selected"}>همه ی لیست ها</Button>
-                    <Button>لیست های من</Button>
+                    <Button className={myList ? "" : "selected"} onClick={() => setMyList(false)}>همه ی لیست ها</Button>
+                    <Button className={myList ? "selected" : ""} onClick={() => setMyList(true)}>لیست های من</Button>
                 </ButtonGroup>
                 {renderItems(data.list, isList)}
             </Bottom>

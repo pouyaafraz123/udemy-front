@@ -3,8 +3,10 @@ import c2 from "../../../assets/images/c2.svg";
 import c1 from "../../../assets/images/c1.svg";
 import c3 from "../../../assets/images/c3.svg";
 import c4 from "../../../assets/images/c4.svg";
+import {useNavigate} from "react-router-dom";
 
 const GridContent = ({item, channel}) => {
+    const navigate = useNavigate();
     return (
         <Content>
             <ImagePlace>
@@ -29,7 +31,7 @@ const GridContent = ({item, channel}) => {
                     </Detail> : ""}
                </Details>
                <ButtonPlace>
-                   <Button>
+                   <Button onClick={() => navigate(`/admin/playlist/${item.id}`)}>
                        {channel ? "مشاهده اطلاعات کانال" : "مشاهده محتوا"}
                    </Button>
                </ButtonPlace>

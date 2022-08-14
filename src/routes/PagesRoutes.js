@@ -12,6 +12,7 @@ import UserManagementPage from "../components/UserPages/UserLayout/UserManagemen
 import RoleManagement from "../components/UserPages/UserLayout/RoleManagement/RoleManagement";
 import UniversityManagement from "../components/UserPages/UserLayout/UniversityManagement/UniversityManagementPage";
 import CommentManagementPage from "../components/UserPages/UserLayout/Comment/CommentManagementPage";
+import PlaylistComponent from "../components/UserPages/UserLayout/Playlist/PlaylistComponent";
 
 const PagesRoutes = () => {
     return (
@@ -60,6 +61,9 @@ const PagesRoutes = () => {
                             inside={<CommentManagementPage/>}
                         />
                     }/>
+                <Route
+                    path="admin/playlist/:id"
+                    element={<PlaylistComponent/>}/>
             </Routes>
         </BrowserRouter>
     );
