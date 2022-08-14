@@ -75,15 +75,16 @@ const Login = (props) => {
 }
 
 const checkLogin = async (email, password, dispatch, navigate) => {
-    const {data} = await sendData("/login", {
+    await sendData("/login", {
         email: email,
         password: password
-    });
-    if (data && data.data) {
-        dispatch(signIn(data.data));
-        navigate("/admin/dashboard")
-    }
-    return data;
+    }).then(response => {
+        if (response && response.data) {
+            dispatch(signIn(response.data));
+            navigate("/admin/dashboard")
+        }
+        return response;
+    })
 }
 
 const PasswordDiv = styled.div`
