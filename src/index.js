@@ -9,14 +9,18 @@ import "./assets/fonts/fonts.css";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import App from "./app/App";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {Provider} from "react-redux";
+import {store} from "./app/Store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
 root.render(
     <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <App/>
-        </QueryClientProvider>
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <App/>
+            </QueryClientProvider>
+        </Provider>
     </React.StrictMode>
 );
 

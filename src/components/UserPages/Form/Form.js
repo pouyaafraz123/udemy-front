@@ -2,10 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyle from "../../../containers/Global/GlobalStyle";
-import {sendData} from "../../../api/axios";
+import {sendData} from "../../../api/Axios";
 
 const Form = (props) => {
-    const checkLogin = (email, pass) => {
+    const checkLogin = () => {
         sendData("/login", {
             email: "superadmin@gmail.com",
             password: "password"
@@ -14,15 +14,19 @@ const Form = (props) => {
             return error;
         })
     }
+
     return (
         <RegisterDiv className="container pt-5 mt-4">
             <GlobalStyle color={"#f9fafb"}/>
             <div className="d-flex justify-content-center align-items-center">
                 <div className="Form-Container w-100">
                     <h4 className="px-3 mb-4 pb-1 align-self-start">{props.title}</h4>
-                    <form className="w-100 px-3">
+                    <form className="w-100 px-3" action={"#"}>
                         {props.children}
-                        <button type="submit" onClick={() => checkLogin("f", "")}
+                        <button type={"submit"} onClick={(e) => {
+                            e.preventDefault();
+                            checkLogin()
+                        }}
                                 className="btn registerBTN align-self-start px-4 mt-3">{props.linkText}
                         </button>
                     </form>
