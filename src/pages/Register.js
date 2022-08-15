@@ -7,6 +7,7 @@ import {sendData} from "../api/Axios";
 import {signIn} from "../features/AuthSlice";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import Side from "../components/UI/Side/Side";
 
 const Register = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -37,6 +38,7 @@ const Register = (props) => {
             login={false}
         >
             <form className="w-100 px-3" action={"#"}>
+                <Side login={false}/>
                 <div>
                     <label htmlFor={"name"}>نام</label>
                     <input

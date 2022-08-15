@@ -2,7 +2,6 @@ import axios from "axios";
 
 const BASEURL = "https://udemy.myter.ir/api/v1";
 
-
 export const getData = async (url) => {
     const response = await axios.get(BASEURL + url);
     return response.data;
