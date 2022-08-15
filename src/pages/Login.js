@@ -7,11 +7,15 @@ import {sendData} from "../api/Axios";
 import {signIn} from "../features/AuthSlice";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import Alert from "../components/UI/Alert/Alert";
 
 const Login = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const [alertShow, setAlertShow] = useState(false);
+    const [validate, setValidate] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,6 +38,10 @@ const Login = (props) => {
             login={true}
         >
             <form className="w-100 px-3" action={"#"}>
+                <Alert backColor={validate ? "#28a745" : "#dc3545"} borderColor={validate ? "#1f8838" : "#bd1120"}
+                       title={validate ? "ورود به سیستم" : "خطا در ورود"}
+                       content={validate ? "عملیات با موفقیت انجام شد!" : "اطلاعات وارد شده صحیح نمی باشد."}
+                       display={alertShow}/>
                 <div>
                     <label htmlFor={"email"}>ایمیل</label>
                     <input
@@ -65,7 +73,7 @@ const Login = (props) => {
                 </div>
                 <button type={"submit"} onClick={(e) => {
                     e.preventDefault();
-                    checkLogin(email, password, dispatch, navigate);
+                    checkLogin(email, password, dispatch, navigate, setAlertShow, setValidate);
                 }}
                         className="btn registerBTN align-self-start px-4 mt-3">ورود به سیستم
                 </button>
@@ -74,16 +82,29 @@ const Login = (props) => {
     );
 }
 
-const checkLogin = async (email, password, dispatch, navigate) => {
+const checkLogin = async (email, password, dispatch, navigate, setAlertShow, setValidate) => {
     await sendData("/login", {
         email: email,
         password: password
     }).then(response => {
         if (response.data && response.data.data) {
             dispatch(signIn(response.data.data));
-            navigate("/admin/dashboard")
+            setValidate(true);
+            setAlertShow(true);
+            setTimeout((e) => {
+                navigate("/admin/dashboard");
+            }, 3000)
+        } else {
+            setValidate(false);
+            setAlertShow(true);
         }
         return response;
+    }).catch(error => {
+        setValidate(false);
+        setAlertShow(true);
+        setTimeout((e) => {
+            setAlertShow(false);
+        }, 3000)
     })
 }
 

@@ -26,6 +26,15 @@ export const updateDataWithToken = async (url, data, token) => {
     });
 }
 
+export const postDataWithToken = async (url, data, token) => {
+    return await axios.post(BASEURL + url, data, {
+        headers: {
+            authorization: "Bearer " + token,
+            Accept: 'application/json'
+        }
+    });
+}
+
 export const sendData = async (url, data) => {
     return await axios.post(BASEURL + url, data);
 }
