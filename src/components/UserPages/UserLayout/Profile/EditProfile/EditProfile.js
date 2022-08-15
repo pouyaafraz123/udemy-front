@@ -48,7 +48,7 @@ const EditProfile = (props) => {
     console.log(data)
 
     const updateData = () => {
-        updateDataWithToken("", {
+        updateDataWithToken("/profile", {
             name: name,
             last_name: family,
             email: email,
