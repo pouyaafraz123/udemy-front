@@ -8,6 +8,7 @@ import {signIn} from "../features/AuthSlice";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Alert from "../components/UI/Alert/Alert";
+import Side from "../components/UI/Side/Side";
 
 const Login = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -42,6 +43,7 @@ const Login = (props) => {
                        title={validate ? "ورود به سیستم" : "خطا در ورود"}
                        content={validate ? "عملیات با موفقیت انجام شد!" : "اطلاعات وارد شده صحیح نمی باشد."}
                        display={alertShow}/>
+                <Side login={true}/>
                 <div>
                     <label htmlFor={"email"}>ایمیل</label>
                     <input

@@ -2,13 +2,36 @@ import React, {useState} from "react";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../../features/AuthSlice";
+import {updateDataWithToken} from "../../../../../api/Axios";
 
 const ChangePassword = (props) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+
+    const [oldPass, setOldPass] = useState("");
+    const [newPass, setNewPass] = useState("");
+    const [newPassRpt, setNewPassRpt] = useState("");
+
+    const token = useSelector(authState).user.token;
+
+    const updateData = () => {
+        updateDataWithToken("/profile/password", {
+            old_password: oldPass,
+            password: newPass,
+            password_confirmation: newPassRpt
+        }, token).then(response => {
+            console.log(response);
+            return response;
+        }).catch(error => {
+            console.log(error);
+            return error;
+        })
+    }
+
     return (
         <>
             <Container>
@@ -20,6 +43,7 @@ const ChangePassword = (props) => {
                             className="form-control mb-3 border-left-0"
                             id={"oldPass"}
                             placeholder={"لطفا رمز فعلی خود را وارد نمایید"}
+                            onChange={(e) => setOldPass(e.target.value)}
                         />
                         <div className="input-group-append">
                             <div className="Icon input-group-text" onClick={togglePassword}>
@@ -36,6 +60,7 @@ const ChangePassword = (props) => {
                             className="form-control mb-3 border-left-0"
                             id={"newPass"}
                             placeholder={"لطفا رمز جدید خود را وارد نمایید"}
+                            onChange={(e) => setNewPass(e.target.value)}
                         />
                         <div className="input-group-append">
                             <div className="Icon input-group-text" onClick={togglePassword}>
@@ -52,6 +77,7 @@ const ChangePassword = (props) => {
                             className="form-control mb-3 border-left-0"
                             id={"newPassRpt"}
                             placeholder={"لطفا رمز جدید خود را مجددا وارد نمایید"}
+                            onChange={(e) => setNewPassRpt(e.target.value)}
                         />
                         <div className="input-group-append">
                             <div className="Icon input-group-text" onClick={togglePassword}>
@@ -62,8 +88,9 @@ const ChangePassword = (props) => {
                 </PropertyDiv>
             </Container>
             <PropertyDiv className="d-flex align-items-center justify-content-end mb-4">
-                <Link to="/" type="button"
-                      className="btn registerBTN">تغییر گذرواژه</Link>
+                <button onClick={updateData} type="button"
+                        className="btn registerBTN">تغییر گذرواژه
+                </button>
             </PropertyDiv>
         </>
     );

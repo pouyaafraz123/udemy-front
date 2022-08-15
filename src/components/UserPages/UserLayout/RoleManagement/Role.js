@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const Role = ({data}) => {
 
-
-    // console.log(data);
     let roleItem = [];
     let index = 0;
     while (index < data.list.length) {
