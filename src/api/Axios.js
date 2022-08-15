@@ -26,6 +26,15 @@ export const updateDataWithToken = async (url, data, token) => {
     });
 }
 
+export const postFileWithToken = async (url, data, token) => {
+    return await axios.post(BASEURL + url, data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: "Bearer " + token
+        }
+    })
+}
+
 export const postDataWithToken = async (url, data, token) => {
     return await axios.post(BASEURL + url, data, {
         headers: {

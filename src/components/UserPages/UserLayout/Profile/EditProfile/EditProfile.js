@@ -3,7 +3,7 @@ import FileChooser from "../FileChooser/FileChooser";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {authState} from "../../../../../features/AuthSlice";
-import {getDataWithToken, updateDataWithToken} from "../../../../../api/Axios";
+import {getDataWithToken, postFileWithToken, updateDataWithToken} from "../../../../../api/Axios";
 import {useQuery} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 
@@ -68,15 +68,11 @@ const EditProfile = (props) => {
             console.log(error);
             return error;
         })
-        // postDataWithToken("/upload_avatar", {
-        //     avatar: avatar
-        // }, token).then(response => {
-        //     console.log(response);
-        //     return response;
-        // }).catch(error => {
-        //     console.log(error);
-        //     return error;
-        // })
+        postFileWithToken("/upload_avatar", {avatar: avatar}, token)
+            .then(r => {
+                console.log(r)
+            })
+            .catch((e) => console.log(e))
     }
 
     return (
@@ -142,7 +138,9 @@ const EditProfile = (props) => {
                 <FileChooser avatarSetter={setAvatar} avatar={avatar} id="prof"/>
             </PropertyDiv>
             <PropertyDiv className="d-flex align-items-center justify-content-end mb-4">
-                <button onClick={() => updateData(navigate)} type="button"
+                <button onClick={() => {
+                    updateData(navigate)
+                }} type="button"
                         className="btn registerBTN">ویرایش
                 </button>
             </PropertyDiv>

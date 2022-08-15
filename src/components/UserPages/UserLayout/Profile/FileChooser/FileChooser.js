@@ -15,6 +15,7 @@ const FileChooser = (props) => {
         onDrop: (acceptedFiles) => {
             // setImage([])
             setB(false)
+            props.avatarSetter(acceptedFiles[0])
             setImage(
                 acceptedFiles.map((upFile) => Object.assign(upFile, {
                     preview: URL.createObjectURL(upFile)
@@ -42,7 +43,7 @@ const FileChooser = (props) => {
                 }).pop()
             );
         } else {
-            props.avatarSetter(yourImage[0].preview)
+
             return (
                 yourImage.map((upFile, index) => {
                     return (
