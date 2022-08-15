@@ -2,17 +2,32 @@ import SearchIcon from '@mui/icons-material/Search';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import styled from "styled-components";
+import {useState} from "react";
 
-const SearchBox = ({isList, setIsList, title, btnText, hidden,placeHolder,btnHidden}) => {
+const SearchBox = ({isList, setIsList, title, btnText, hidden, placeHolder, btnHidden, setUrl, url, refetch}) => {
+    const [text, setText] = useState("");
+
     return (
         <Box>
             <Title>{title}</Title>
             <Middle>
                 <InputGroup>
                     <Icon><SearchIcon/></Icon>
-                    <Input placeholder={placeHolder}></Input>
+                    <Input placeholder={placeHolder} value={text} onChange={(e) => setText(e.target.value)}></Input>
                 </InputGroup>
-                <Button className={"s-btn"}>جستجو</Button>
+                <Button
+                    className={"s-btn"}
+                    onClick={() => {
+                        console.log(url)
+                        if (text === "" || !text) {
+                            setUrl(url.substring(0, url.lastIndexOf("=") + 1))
+                        } else {
+                            setUrl(url + text);
+                        }
+                        setTimeout(() => refetch(), 70)
+
+                    }}
+                >جستجو</Button>
                 <Views>
                     {hidden ? "" :
                         <>

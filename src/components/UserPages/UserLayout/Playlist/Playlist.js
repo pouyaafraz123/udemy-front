@@ -1,56 +1,63 @@
-import styled from "styled-components";
-import SearchBox from "../../Common/SerachBox";
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import CommentList from "./CommentList";
+import SearchBox from "../../Common/SerachBox";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import PlaylistPage from "./PlaylistPage";
 import {useEffect, useState} from "react";
+import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {authState} from "../../../../features/AuthSlice";
 import {getDataWithToken} from "../../../../api/Axios";
 import {useQuery} from "@tanstack/react-query";
 
-const CommentManagementPage = () => {
+const Playlist = () => {
     useEffect(() => {
-        document.title = "مدیریت نظرات"
+        document.title = "لیست پخش ها"
     }, []);
-    const [url, setUrl] = useState("/admin/comments?page=1&active=1&user_search=");
-    const [active, setActive] = useState(true);
+    const navigate = useNavigate();
+    const [myList, setMyList] = useState(false)
+    const [isList, setIsList] = useState(false);
+    const [url, setUrl] = useState("/playlist?list_type=&channel_id=&status=updating&search=");
     const token = useSelector(authState).user.token;
-    const getComments = async () => {
+    const getPlaylists = async () => {
         const {data} = await getDataWithToken(url, token);
-        console.log(data);
         return data;
     }
-    const {data, error, isError, isLoading, refetch} = useQuery(["comments"], getComments);
+    const {data, error, isError, isLoading, refetch} = useQuery(["playlist"], getPlaylists);
+
+
     if (isLoading) return "";
-    console.log(data);
     return (
         <Container>
             <GlobalStyle color={"#f3f4f6"}/>
             <SearchBox
-                title={"نظرات کاربران"}
-                btnHidden
-                placeHolder={"جستجو بر اساس اطلاعات کاربر ..."}
-                hidden
+                isList={isList}
+                setIsList={setIsList}
+                title={"لیست پخش ها"}
+                btnText={"افزودن لیست پخش جدید"}
+                placeHolder={"جستجو بر اساس نام لیست پخش ..."}
                 url={url}
                 setUrl={setUrl}
                 refetch={refetch}
             />
             <Bottom>
                 <ButtonGroup>
-                    <Button className={active ? "selected" : ""} onClick={() => {
-                        setActive(true);
-                        setUrl("/admin/comments?page=1&active=1&user_search=")
-                        setTimeout(() => refetch(), 70)
-                    }}>نظر های فعال</Button>
-                    <Button className={!active ? "selected" : ""} onClick={() => {
-                        setActive(false);
-                        setUrl("/admin/comments?page=1&active=0&user_search=")
-                        setTimeout(() => refetch(), 70)
-                    }}>نظر های غیر فعال</Button>
+                    <Button className={myList ? "" : "selected"} onClick={() => {
+                        setMyList(false);
+                        setUrl("/playlist?list_type=&channel_id=&status=updating&search=")
+                        setTimeout(() => refetch(), 100)
+
+                    }}>همه ی لیست ها</Button>
+                    <Button className={myList ? "selected" : ""} onClick={() => {
+                        setMyList(true);
+                        setUrl("/playlist?list_type=my_self&page=1&search=")
+                        setTimeout(() => refetch(), 100)
+
+
+                    }}>لیست های من</Button>
                 </ButtonGroup>
-                {renderList(data.list)}
+                <PlaylistPage data={data} isList={isList}/>
             </Bottom>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>
@@ -60,22 +67,11 @@ const CommentManagementPage = () => {
         </Container>
     );
 }
-
-
-const renderList = (items) => {
-    return items.map((item, index) => {
-        return (
-            <CommentList comment={item} key={index}/>
-        );
-    });
-}
-
 const Container = styled.div`
 `;
 const Bottom = styled.div`
   margin-top: 20px;
 `;
-
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: start;
@@ -100,7 +96,6 @@ const Button = styled.button`
     background: rgba(156, 163, 175, .1);
   }
 `;
-
 const NextPage = styled.div`
   width: 100%;
   display: flex;
@@ -133,5 +128,4 @@ const Box = styled.button`
   align-items: center;
   border-radius: 5px;
 `;
-
-export default CommentManagementPage;
+export default Playlist;

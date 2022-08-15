@@ -4,7 +4,7 @@ import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import UserList from "./UserList";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {authState} from "../../../../features/AuthSlice";
 import {getDataWithToken} from "../../../../api/Axios";
@@ -14,13 +14,14 @@ const UserManagementPage = () => {
     useEffect(() => {
         document.title = "مدیریت کاربران"
     }, []);
+    const [url, setUrl] = useState("/admin/users?page=1&search=")
     const token = useSelector(authState).user.token;
     const getUsers = async () => {
-        const {data} = await getDataWithToken("/admin/users?page=1&search=", token);
+        const {data} = await getDataWithToken(url, token);
         console.log(data);
         return data;
     }
-    const {data, error, isError, isLoading} = useQuery(["users"], getUsers);
+    const {data, error, isError, isLoading, refetch} = useQuery(["users"], getUsers);
     if (isLoading) return "";
     console.log(data);
     return (
@@ -31,6 +32,9 @@ const UserManagementPage = () => {
                 btnText={"افزودن کاربر جدید"}
                 placeHolder={"جستجو بر اساس نام، نام خانوادگی، شماره موبایل و ایمیل ..."}
                 hidden
+                url={url}
+                setUrl={setUrl}
+                refetch={refetch}
             />
             <Bottom>
                 {renderList(data.list)}

@@ -1,22 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
-import {authState} from "../../../../features/AuthSlice";
-import {getDataWithToken} from "../../../../api/Axios";
-import {useQuery} from "@tanstack/react-query";
 
-const Role = (props) => {
+const Role = ({data}) => {
 
-    const token = useSelector(authState).user.token;
-    const getRoleData = async () => {
-        const {data} = await getDataWithToken("/admin/roles?page=1&search=", token);
-        // console.log(data);
-        return data;
-    }
-    const {data, error, isError, isLoading} = useQuery(["Role"], getRoleData);
-    if (isLoading) {
-        return ""
-    }
+
     // console.log(data);
     let roleItem = [];
     let index = 0;

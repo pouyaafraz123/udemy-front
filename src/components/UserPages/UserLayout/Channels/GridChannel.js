@@ -33,6 +33,7 @@ const GridChannel = ({item}) => {
 }
 
 const Content = styled.div`
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: start;

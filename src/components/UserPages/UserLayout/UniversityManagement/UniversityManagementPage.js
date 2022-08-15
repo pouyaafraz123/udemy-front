@@ -4,7 +4,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import GlobalStyle from "../../../../containers/Global/GlobalStyle";
 import SearchBox from "../../Common/SerachBox";
 import UniversityList from "./UniversityList";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {authState} from "../../../../features/AuthSlice";
 import {getDataWithToken} from "../../../../api/Axios";
@@ -14,13 +14,14 @@ const UniversityManagement = () => {
     useEffect(() => {
         document.title = "مدیریت دانشگاه ها"
     }, []);
+    const [url, setUrl] = useState("/category?page=1&search=")
     const token = useSelector(authState).user.token;
     const getCategory = async () => {
-        const {data} = await getDataWithToken("/category?page=1&search=", token);
+        const {data} = await getDataWithToken(url, token);
         console.log(data);
         return data;
     }
-    const {data, error, isError, isLoading} = useQuery(["category"], getCategory);
+    const {data, error, isError, isLoading, refetch} = useQuery(["category"], getCategory);
     if (isLoading) return "";
     console.log(data);
     return (
@@ -31,6 +32,9 @@ const UniversityManagement = () => {
                 btnText={"افزودن دانشگاه جدید"}
                 placeHolder={"جستجو ..."}
                 hidden
+                url={url}
+                setUrl={setUrl}
+                refetch={refetch}
             />
             <Bottom>
                 {renderList(data.list)}

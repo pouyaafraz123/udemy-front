@@ -1,14 +1,29 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import SearchBox from "../../Common/SerachBox";
 import Role from "./Role";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
 const RoleManagement = () => {
     useEffect(() => {
         document.title = "مدیریت نقش ها و دسترسی"
     }, []);
+    const [url, setUrl] = useState("/admin/roles?page=1&search=");
+    const token = useSelector(authState).user.token;
+    const getRoleData = async () => {
+        const {data} = await getDataWithToken(url, token);
+        // console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading, refetch} = useQuery(["Role"], getRoleData);
+    if (isLoading) {
+        return ""
+    }
     return (
         <>
             <SearchBox
@@ -16,8 +31,11 @@ const RoleManagement = () => {
                 btnText={"افزودن نقش جدید"}
                 placeHolder={"جستجو بر اساس نام نقش ..."}
                 hidden
+                url={url}
+                setUrl={setUrl}
+                refetch={refetch}
             />
-            <Role/>
+            <Role data={data}/>
             <NextPage>
                 <Box><KeyboardArrowRightIcon/></Box>
                 <Box className={"selected"}>1</Box>

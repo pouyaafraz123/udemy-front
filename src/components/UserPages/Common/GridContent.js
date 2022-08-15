@@ -41,6 +41,7 @@ const GridContent = ({item, channel}) => {
 }
 
 const Content = styled.div`
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -49,7 +50,8 @@ const Content = styled.div`
   background: white;
   border-radius: 15px;
   overflow: hidden;
-  &:hover .image{
+
+  &:hover .image {
     transform: scale(1.2);
   }
   &:hover .span{

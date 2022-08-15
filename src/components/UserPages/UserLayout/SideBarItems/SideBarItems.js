@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -9,76 +9,77 @@ import PeopleIcon from '@mui/icons-material/People';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {useDispatch} from "react-redux";
+import {signOut} from "../../../../features/AuthSlice";
 
-class SideBarItems extends Component {
-    state = {
-        items: [
-            {
-                url: "/admin/dashboard",
-                title: "داشبورد",
-                icon: <DashboardIcon/>,
-                status: this.props.activeItem === "dashboard" ? "active" : "",
-                id: 1
-            },
-            {
-                url: "/admin/profile",
-                title: "پروفایل من",
-                icon: <ManageAccountsIcon/>,
-                status: this.props.activeItem === "profile" ? "active" : "",
-                id: 2
-            },
-            {
-                url: "/admin/playlist",
-                title: "لیست پخش ها",
-                icon: <PlaylistPlayIcon/>,
-                status: this.props.activeItem === "playlist" ? "active" : "",
-                id: 3
-            },
-            {
-                url: "/admin/channel",
-                title: "لیست کانال ها",
-                icon: <YouTubeIcon/>,
-                status: this.props.activeItem === "channel" ? "active" : "",
-                id: 4
-            },
-            {
-                url: "/admin/userManagement",
-                title: "مدیریت کاربران",
-                icon: <PeopleIcon/>,
-                status: this.props.activeItem === "userManagement" ? "active" : "",
-                id: 5
-            },
-            {
-                url: "/admin/roleManagement",
-                title: "مدیریت نقش ها",
-                icon: <PeopleIcon/>,
-                status: this.props.activeItem === "roleManagement" ? "active" : "",
-                id: 6
-            },
-            {
-                url: "/admin/universityManagement",
-                title: "مدیریت دانشگاه ها",
-                icon: <AccountBalanceIcon/>,
-                status: this.props.activeItem === "universityManagement" ? "active" : "",
-                id: 7
-            },
-            {
-                url: "/admin/commentManagement",
-                title: "مدیریت نظرات",
-                icon: <ChatBubbleIcon/>,
-                status: this.props.activeItem === "commentManagement" ? "active" : "",
-                id: 8
-            },
-            {url: "/login", title: "خروج", icon: <LogoutIcon/>},
-        ]
-    }
+const SideBarItems = (props) => {
+    const [items, setItems] = useState([
+        {
+            url: "/admin/dashboard",
+            title: "داشبورد",
+            icon: <DashboardIcon/>,
+            status: props.activeItem === "dashboard" ? "active" : "",
+            id: 1
+        },
+        {
+            url: "/admin/profile",
+            title: "پروفایل من",
+            icon: <ManageAccountsIcon/>,
+            status: props.activeItem === "profile" ? "active" : "",
+            id: 2
+        },
+        {
+            url: "/admin/playlist",
+            title: "لیست پخش ها",
+            icon: <PlaylistPlayIcon/>,
+            status: props.activeItem === "playlist" ? "active" : "",
+            id: 3
+        },
+        {
+            url: "/admin/channel",
+            title: "لیست کانال ها",
+            icon: <YouTubeIcon/>,
+            status: props.activeItem === "channel" ? "active" : "",
+            id: 4
+        },
+        {
+            url: "/admin/userManagement",
+            title: "مدیریت کاربران",
+            icon: <PeopleIcon/>,
+            status: props.activeItem === "userManagement" ? "active" : "",
+            id: 5
+        },
+        {
+            url: "/admin/roleManagement",
+            title: "مدیریت نقش ها",
+            icon: <PeopleIcon/>,
+            status: props.activeItem === "roleManagement" ? "active" : "",
+            id: 6
+        },
+        {
+            url: "/admin/universityManagement",
+            title: "مدیریت دانشگاه ها",
+            icon: <AccountBalanceIcon/>,
+            status: props.activeItem === "universityManagement" ? "active" : "",
+            id: 7
+        },
+        {
+            url: "/admin/commentManagement",
+            title: "مدیریت نظرات",
+            icon: <ChatBubbleIcon/>,
+            status: props.activeItem === "commentManagement" ? "active" : "",
+            id: 8
+        },/*
+            {url: "/login", title: "خروج", icon: <LogoutIcon/>},*/
+    ]);
 
-    changeStatus(id) {
-        const currentItemIndex = this.state.items.findIndex((p) => {
+
+    const changeStatus = (id) => {
+        const currentItemIndex = items.findIndex((p) => {
             return p.id === id
         });
-        const currentItem = this.state.items[currentItemIndex];
-        const menuItems = this.state.items;
+        const currentItem = items[currentItemIndex];
+        const menuItems = items;
         currentItem.status = "active";
         menuItems[currentItemIndex] = currentItem;
 
@@ -87,26 +88,31 @@ class SideBarItems extends Component {
                 item.status = "";
             }
         })
-        this.setState({items: menuItems});
+        setItems(menuItems);
     }
 
-    render() {
-        return (
-            <>
-                {
-                    this.state.items.map((item) => {
-                        return (
-                            <ItemsDiv key={item.title} onClick={this.props.clicked}>
-                                <Link to={item.url} className={item.status} onClick={() => this.changeStatus(item.id)}>
-                                    {item.icon} {item.title}
-                                </Link>
-                            </ItemsDiv>
-                        );
-                    })
-                }
-            </>
+    const dispatch = useDispatch();
+    return (
+        <>
+            {
+                items.map((item) => {
+                    return (
+                        <ItemsDiv key={item.title} onClick={props.clicked}>
+                            <Link to={item.url} className={item.status} onClick={() => changeStatus(item.id)}>
+                                {item.icon} {item.title}
+                            </Link>
+                        </ItemsDiv>
+                    );
+                })
+            }
+            <ItemsDiv>
+                <Link to={"/login"} onClick={() => dispatch(signOut())}>
+                    <LogoutIcon/> خروج
+                </Link>
+            </ItemsDiv>
+        </>
         );
-    }
+
 }
 
 const ItemsDiv = styled.div`

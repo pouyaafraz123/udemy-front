@@ -17,13 +17,15 @@ const ChannelPage = () => {
         document.title = "کانال ها"
     }, []);
     const [isList, setIsList] = useState(false);
+    const [select, setSelect] = useState(0);
+    const [url, setUrl] = useState("/channel?list_type=&page=1&status=&search=");
     const token = useSelector(authState).user.token;
     const getChannels = async () => {
-        const {data} = await getDataWithToken("/channel?list_type=&page=1&search=&status=", token);
+        const {data} = await getDataWithToken(url, token);
         console.log(data);
         return data;
     }
-    const {data, error, isError, isLoading} = useQuery(["channels"], getChannels);
+    const {data, error, isError, isLoading, refetch} = useQuery(["channels"], getChannels);
     if (isLoading) return "";
     console.log(data);
     return (
@@ -35,12 +37,40 @@ const ChannelPage = () => {
                 title={"لیست کانال ها"}
                 btnText={"افزودن کانال جدید"}
                 placeHolder={"جستجو بر اساس نام کانال ..."}
+                url={url}
+                setUrl={setUrl}
+                refetch={refetch}
             />
             <Bottom>
                 <ButtonGroup>
-                    <Button className={"selected"}>همه کانال ها</Button>
-                    <Button>کانال های من</Button>
-                    <Button>کانال های عضو شده</Button>
+                    <Button
+                        className={select === 0 ? "selected" : ""}
+                        onClick={() => {
+                            setSelect(0)
+                            setUrl("/channel?list_type=&page=1&status&search=");
+                            setTimeout(() => refetch(), 100)
+                        }
+                        }
+                    >همه کانال ها
+                    </Button>
+                    <Button
+                        className={select === 1 ? "selected" : ""}
+                        onClick={() => {
+                            setSelect(1)
+                            setUrl("/channel?list_type=my_self&page=1&search=");
+                            setTimeout(() => refetch(), 100)
+                        }
+                        }
+                    >کانال های من</Button>
+                    <Button
+                        className={select === 2 ? "selected" : ""}
+                        onClick={() => {
+                            setSelect(2)
+                            setUrl("/channel?list_type=joined&page=1&search=");
+                            setTimeout(() => refetch(), 100)
+                        }
+                        }
+                    >کانال های عضو شده</Button>
                 </ButtonGroup>
                 {renderItems(data.list, isList)}
             </Bottom>
