@@ -1,41 +1,39 @@
 import React from "react";
 import styled from "styled-components";
-
-const items = [
-    {
-        number: 1,
-        title: "Student",
-        createData: "تاریخ ایجاد : 1401/02/06 - 15:15:13",
-        editDate: "آخرین ویرایش : 1401/02/06 - 15:15:13",
-        role: []
-    },
-    {
-        number: 2,
-        title: "دانشجو",
-        createData: "تاریخ ایجاد : 1400/11/14 - 08:26:33",
-        editDate: "خرین ویرایش : 1400/11/25 - 12:53:17",
-        role: []
-    },
-    {
-        number: 3,
-        title: "استاد",
-        createData: "تاریخ ایجاد : 1400/11/14 - 08:26:33",
-        editDate: "خرین ویرایش : 1400/11/25 - 12:53:29",
-        role: ["media-edit", "channel-create", "channel-edit", "channel-delete", "playlist-create", "playlist-edit", "playlist-delete", "media-create", "media-delete", "comment-list", "comment-edit", "comment-delete",]
-    },
-    {
-        number: 4,
-        title: "SuperAdmin",
-        createData: "تاریخ ایجاد : 1400/11/14 - 08:26:33",
-        editDate: "خرین ویرایش : 1400/11/28 - 09:32:20",
-        role: ["permission-list", "permission-create", "permission-edit", "permission-delete", "role-list", "role-create", "role-edit", "role-delete", "channel-create", "channel-edit", "channel-delete", "playlist-create", "playlist-edit", "playlist-delete", "media-create", "media-edit", "media-delete", "channel-admin-edit", "channel-admin-delete", "user-list", "user-create", "user-edit", "user-delete", "category-create", "category-edit", "category-delete", "comment-list", "comment-create", "comment-edit", "playlist-admin-edit", "playlist - admin - delete", "media-admin-edit", "media-admin-delete", "comment-delete", "comment-admin-list", "comment-admin-delete", "comment-admin-edit"]
-    },
-]
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
 const Role = (props) => {
-    const identifyRole = (role,index) => {
+
+    const token = useSelector(authState).user.token;
+    const getRoleData = async () => {
+        const {data} = await getDataWithToken("/admin/roles?page=1&search=", token);
+        // console.log(data);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["Role"], getRoleData);
+    if (isLoading) {
+        return ""
+    }
+    // console.log(data);
+    let roleItem = [];
+    let index = 0;
+    while (index < data.list.length) {
+        const dataIn = {
+            number: index + 1,
+            title: data.list[index].name,
+            createData: data.list[index].created_at,
+            editDate: data.list[index].updated_at,
+            role: data.list[index].permissions
+        }
+        index++;
+        roleItem.push(dataIn);
+    }
+    const identifyRole = (role, index) => {
         let classes = "";
-        if (role.includes("edit")) {
+        if (role.includes("edit") || role.includes("update")) {
             classes = "Role-edit";
         } else if (role.includes("create")) {
             classes = "Role-create";
@@ -46,7 +44,7 @@ const Role = (props) => {
         }
         return <div className={"mr-1 mb-2 Role " + classes} key={index}>{role}</div>
     }
-    return items.map((item,index) => {
+    return roleItem.map((item, index) => {
         return (
             <RoleCard key={index} className="card mt-3">
                 <div className="card-body">
@@ -59,9 +57,9 @@ const Role = (props) => {
                     </div>
                     <div className="pr-4 mb-2">
                         {
-                            item.role.map((role,index) => {
+                            item.role.map((role, index) => {
                                 return (
-                                    identifyRole(role,index)
+                                    identifyRole(role.name, index)
                                 );
                             })
                         }

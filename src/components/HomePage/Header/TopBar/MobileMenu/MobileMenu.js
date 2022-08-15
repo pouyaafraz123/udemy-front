@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MenuItems from "../MenuItems/MenuItems";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const MobileMenu = (props) => {
     return (
@@ -22,14 +22,22 @@ const MobileItems = styled.div`
   .nav-item {
     list-style: none;
   }
+
   .nav-link {
     color: white;
     font-weight: 400;
     transition: all ease 0.5s;
   }
+
   .nav-link:hover {
     color: white !important;
     padding-right: 30px;
+  }
+
+  a.active {
+    color: white !important;
+    padding-right: 30px;
+    font-weight: 700;
   }
 `;
 
