@@ -42,7 +42,7 @@ const EditProfile = (props) => {
     }, [data]);
 
     if (isLoading) {
-        return ""
+        return <div>در حال دریافت اطلاعات . . .</div>
     }
 
     console.log(data)

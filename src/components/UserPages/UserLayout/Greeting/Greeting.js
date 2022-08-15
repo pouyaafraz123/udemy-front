@@ -1,18 +1,45 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import {useSelector} from "react-redux";
+import {authState} from "../../../../features/AuthSlice";
+import {getDataWithToken} from "../../../../api/Axios";
+import {useQuery} from "@tanstack/react-query";
 
 const Greeting = (props) => {
+    const [name, setName] = useState("");
+    const [family, setFamily] = useState("");
+    const [email, setEmail] = useState("");
+    const [avatar, setAvatar] = useState("");
+
+    const token = useSelector(authState).user.token;
+    const getProfileData = async () => {
+        const {data} = await getDataWithToken("/profile", token);
+        return data;
+    }
+    const {data, error, isError, isLoading} = useQuery(["profile"], getProfileData);
+
+    useEffect(() => {
+        if (data) {
+            setName(data.name);
+            setFamily(data.last_name);
+            setEmail(data.email);
+            setAvatar(data.avatar);
+        }
+    }, [data]);
+
     return (
         <>
             <Greetingdiv className="d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                    <img src={require("../../../../assets/images/User.png")} alt="logo" style={{width: '40px'}}
-                         className="img-fluid"/>
+                    <img
+                        src={/*require("../../../../assets/images/User.png")*/ avatar === "" ? require("../../../../assets/images/User.png") : avatar}
+                        alt="logo" style={{width: '40px'}}
+                        className="img-fluid"/>
                     <div className="d-flex flex-column justify-content-center pr-2">
-                        <p>Kamyab Pouya Tabani Afraz <small className="text-muted">خوش آمدید!</small></p>
-                        <small className="text-muted mt-n3">tabaniafraz@telegmail.com</small>
+                        <p>{name} {family} <small className="text-muted">خوش آمدید!</small></p>
+                        <small className="text-muted mt-n3">{email}</small>
                     </div>
                 </div>
                 <div className="d-xl-none d-lg-block toggler-box shadow-sm" style={{cursor: 'pointer'}}
