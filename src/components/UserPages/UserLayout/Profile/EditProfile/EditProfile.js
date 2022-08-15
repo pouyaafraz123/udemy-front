@@ -5,6 +5,8 @@ import {useSelector} from "react-redux";
 import {authState} from "../../../../../features/AuthSlice";
 import {getDataWithToken, updateDataWithToken} from "../../../../../api/Axios";
 import {useQuery} from "@tanstack/react-query";
+import {useNavigate} from "react-router-dom";
+
 
 const EditProfile = (props) => {
     const [name, setName] = useState("");
@@ -18,13 +20,13 @@ const EditProfile = (props) => {
     const [bio, setBio] = useState("");
     const [avatar, setAvatar] = useState("");
 
-
     const token = useSelector(authState).user.token;
     const getProfileData = async () => {
         const {data} = await getDataWithToken("/profile", token);
         return data;
     }
     const {data, error, isError, isLoading} = useQuery(["profile"], getProfileData);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (data) {
@@ -47,7 +49,7 @@ const EditProfile = (props) => {
 
     console.log(data)
 
-    const updateData = () => {
+    const updateData = (navigate) => {
         updateDataWithToken("/profile", {
             name: name,
             last_name: family,
@@ -60,11 +62,21 @@ const EditProfile = (props) => {
             biography: bio,
         }, token).then(response => {
             console.log(response);
+            navigate("/admin/profile");
             return response;
         }).catch(error => {
             console.log(error);
             return error;
         })
+        // postDataWithToken("/upload_avatar", {
+        //     avatar: avatar
+        // }, token).then(response => {
+        //     console.log(response);
+        //     return response;
+        // }).catch(error => {
+        //     console.log(error);
+        //     return error;
+        // })
     }
 
     return (
@@ -127,10 +139,10 @@ const EditProfile = (props) => {
             </Container>
             <PropertyDiv className="mb-5 profile">
                 <label htmlFor="prof">عکس پروفایل</label>
-                <FileChooser avatar={avatar} id="prof"/>
+                <FileChooser avatarSetter={setAvatar} avatar={avatar} id="prof"/>
             </PropertyDiv>
             <PropertyDiv className="d-flex align-items-center justify-content-end mb-4">
-                <button onClick={() => updateData()} type="button"
+                <button onClick={() => updateData(navigate)} type="button"
                         className="btn registerBTN">ویرایش
                 </button>
             </PropertyDiv>
