@@ -1,32 +1,34 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import SideBar from "../../UI/SideBar/SideBar";
 import Greeting from "./Greeting/Greeting";
 import GlobalStyle from "../../../containers/Global/GlobalStyle";
+import {Navigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {authState} from "../../../features/AuthSlice";
 
-class UserLayout extends Component {
-    state = {
-        open: false
-    }
+const UserLayout = (props) => {
+    const [open, setOpen] = useState(false);
+    const isSignedIn = useSelector(authState).isSignedIn;
 
-    sideDrawHandler() {
-        this.setState({open: !this.state.open});
-    }
+    if (!isSignedIn) return <Navigate to="/login" replace={true}/>
 
-    render() {
-        return (
-            <>
-                <GlobalStyle color={"#f3f4f6"}/>
-                <SideBar activeItem={this.props.activeItem} open={this.state.open} clicked={() => this.sideDrawHandler()}/>
-                <UserLayoutDiv>
-                    <div className="container-fluid mt-5 pt-3 pl-lg-5 pl-md-5 pl-3 mx-auto">
-                        <Greeting clicked={() => this.sideDrawHandler()}/>
-                        {this.props.inside}
-                    </div>
-                </UserLayoutDiv>
-            </>
-        );
+    const sideDrawHandler = () => {
+        setOpen(!open)
     }
+    return (
+        <>
+            <GlobalStyle color={"#f3f4f6"}/>
+            <SideBar activeItem={props.activeItem} open={open} clicked={() => sideDrawHandler()}/>
+            <UserLayoutDiv>
+                <div className="container-fluid mt-5 pt-3 pl-lg-5 pl-md-5 pl-3 mx-auto">
+                    <Greeting clicked={() => sideDrawHandler()}/>
+                    {props.inside}
+                </div>
+            </UserLayoutDiv>
+        </>
+    );
+
 }
 
 const UserLayoutDiv = styled.div`
@@ -37,7 +39,7 @@ const UserLayoutDiv = styled.div`
   @media only screen and (max-width: 768px) {
     margin-right: 0;
   }
-  
+
   /*margin-right: 400px;
   margin-left: 34px;
   @media only screen and (max-width: 1191px) {

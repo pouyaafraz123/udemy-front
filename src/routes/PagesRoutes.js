@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -64,6 +64,9 @@ const PagesRoutes = () => {
                 <Route
                     path="admin/playlist/:id"
                     element={<PlaylistComponent/>}/>
+                <Route
+                    path="*"
+                    element={<Navigate to="/" replace={true}/>}/>
             </Routes>
         </BrowserRouter>
     );
