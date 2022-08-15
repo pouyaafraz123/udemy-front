@@ -130,6 +130,10 @@ const Button = styled.button`
   padding: 6px 12px;
   border-radius: 5px;
 
+  @media only screen and (max-width: 350px) {
+    font-size: 11px;
+  }
+
   &:hover {
     background: rgba(156, 163, 175, .1);
   }
@@ -140,7 +144,10 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-template-rows: auto;
   grid-gap: 25px;
-
+  justify-items: center;
+  @media only screen and (max-width: 350px) {
+    grid-template-columns: 100%
+  }
 `;
 
 const NextPage = styled.div`

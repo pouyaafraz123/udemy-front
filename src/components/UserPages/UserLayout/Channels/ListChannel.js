@@ -144,6 +144,7 @@ const Detail = styled.div`
   align-items: center;
   color: #7d7d7d;
   gap: 5px;
+  text-align: center;
 `;
 const Icon = styled.img`
 `;

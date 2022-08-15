@@ -141,7 +141,9 @@ const Details = styled.div`
 
   @media only screen and (max-width: 610px) {
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
   }
 `;
 const Detail = styled.div`
@@ -152,6 +154,10 @@ const Detail = styled.div`
   align-items: center;
   color: #7d7d7d;
   gap: 5px;
+  @media only screen and (max-width: 610px) {
+
+    justify-content: center;
+  }
 `;
 const Icon = styled.img`
 `;

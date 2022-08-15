@@ -205,6 +205,9 @@ const Detail = styled.div`
   align-items: center;
   color: #7d7d7d;
   gap: 5px;
+  @media only screen and (max-width: 690px) {
+    justify-content: center;
+  }
 `;
 const Icon = styled.img`
 `;

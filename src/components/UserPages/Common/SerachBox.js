@@ -69,7 +69,7 @@ const Middle = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 15px;
 `;
 const InputGroup = styled.div`
@@ -121,6 +121,7 @@ const Button = styled.button`
   }
 `;
 const Views = styled.div`
+  flex: 0 0 auto;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -135,6 +136,12 @@ const Img = styled.div`
   background: white;
   padding: 5px;
   color: rgba(41, 80, 157);
+
+  svg {
+    @media only screen and (max-width: 350px) {
+      font-size: 20px;
+    }
+  }
 `;
 
 export default SearchBox;

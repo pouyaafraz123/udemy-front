@@ -37,7 +37,11 @@ const renderGrids = (items) => {
 const GridContainer = styled.div`
   width: 100%;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  @media only screen and (max-width: 350px) {
+    grid-template-columns: 100%
+  }
   grid-template-rows: auto;
   grid-gap: 25px;
 
